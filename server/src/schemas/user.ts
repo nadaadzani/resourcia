@@ -3,27 +3,31 @@ import { getDatabase } from "../config/mongoConnection";
 export const typeDefs = `#graphql
     type User {
         _id: ID
-        email: string!
-        password: string!
-        fullName: string!
-        role: string
-        totalPoint: number
+        email: String!
+        password: String!
+        fullName: String!
+        role: String
+        totalPoint: Int
     }
 
-    type RegisterInput {
-        email: string
-        password: string
-        fullName: string
+    input RegisterInput {
+        email: String
+        password: String
+        fullName: String
     }
 
-    type LoginInput {
-        email: string
-        password: string
+    input LoginInput {
+        email: String
+        password: String
     }
 
     type LoginResponse {
         _id: ID
-        token: string
+        token: String
+    }
+
+    type Query {
+        getUserByLoginInfo: User
     }
 
     type Mutation {
@@ -33,6 +37,9 @@ export const typeDefs = `#graphql
 `;
 
 export const resolvers = {
+  Query: {
+    getUserByLoginInfo: async (_parent: unknown, args: unknown) => {},
+  },
   Mutation: {
     register: async (_parent: unknown, args: unknown) => {},
     login: async (_parent: unknown, args: unknown) => {},

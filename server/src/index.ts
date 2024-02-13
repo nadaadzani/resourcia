@@ -7,3 +7,5 @@ const server = new ApolloServer({
   resolvers: [resolvers],
   introspection: true,
 });
+
+console.log("in index.ts");
