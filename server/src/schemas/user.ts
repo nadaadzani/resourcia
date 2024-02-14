@@ -32,8 +32,8 @@ export const typeDefs = `#graphql
     }
 
     type Mutation {
-        register(inputRegister: RegisterInput): User
-        login(inputLogin: LoginInput): LoginResponse
+        register(inputRegister: RegisterInput!): User
+        login(inputLogin: LoginInput!): LoginResponse
     }
 `;
 

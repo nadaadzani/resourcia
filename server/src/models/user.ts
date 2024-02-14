@@ -2,6 +2,7 @@ import { GraphQLError } from "graphql";
 import { getDatabase } from "../config/mongoConnection.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { signToken } from "../utils/token.js";
+import { ObjectId } from "mongodb";
 
 const getCollection = () => {
   const db = getDatabase();
@@ -18,6 +19,12 @@ type inputRegister = {
 type inputLogin = {
   email: string;
   password: string;
+};
+
+export type TokenPayload = {
+  userId: string | ObjectId;
+  userEmail: string;
+  role: string;
 };
 
 export const register = async (payload: inputRegister) => {
@@ -65,7 +72,15 @@ export const login = async (payload: inputLogin) => {
   const token = signToken({
     userId: user._id,
     userEmail: user.email,
+    role: user.role,
   });
 
   return { _id: user._id, token };
+};
+
+export const getUserById = async (id: string) => {
+  const userCollection = getCollection();
+  const user = await userCollection.findOne({ _id: new ObjectId(id) });
+  if (!user) throw new GraphQLError("User Not Found");
+  return user;
 };

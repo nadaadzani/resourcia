@@ -2,6 +2,7 @@ import { getProductById, getProducts } from "../models/product.js";
 
 export const productTypeDefs = `#graphql
     type Product {
+        _id: ID
         name: String!
         price: Int!
         description: String!
@@ -11,7 +12,7 @@ export const productTypeDefs = `#graphql
 
     type Query {
         getProducts(search: String, offset: Int): [Product]
-        getProductById(id: String): Product
+        getProductById(id: String!): Product
     }
 
     type Mutation {
