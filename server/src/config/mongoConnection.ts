@@ -1,10 +1,11 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { Db, MongoClient, ObjectId } from "mongodb";
 
-const url = process.env.MONGODB_URI;
+const url =
+  "mongodb+srv://nadaadzani:mendokusainene@cluster0.w2fibaz.mongodb.net/";
 const client = new MongoClient(url);
 
 const dbName: string = "resourcia";
-let db;
+let db: Db;
 
 export async function mongoConnect() {
   try {

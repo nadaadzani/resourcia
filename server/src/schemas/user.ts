@@ -1,10 +1,11 @@
 import { getDatabase } from "../config/mongoConnection";
+import { login, register } from "../models/user.js";
 
 export const typeDefs = `#graphql
     type User {
         _id: ID
         email: String!
-        password: String!
+        password: String
         fullName: String!
         role: String
         totalPoint: Int
@@ -12,8 +13,8 @@ export const typeDefs = `#graphql
 
     input RegisterInput {
         email: String
-        password: String
         fullName: String
+        password: String
     }
 
     input LoginInput {
@@ -36,12 +37,36 @@ export const typeDefs = `#graphql
     }
 `;
 
+type inputRegister = {
+  inputRegister: {
+    email: string;
+    fullName: string;
+    password: string;
+  };
+};
+
+type loginInput = {
+  inputLogin: {
+    email: string;
+    password: string;
+  };
+};
+
 export const resolvers = {
   Query: {
     getUserByLoginInfo: async (_parent: unknown, args: unknown) => {},
   },
   Mutation: {
-    register: async (_parent: unknown, args: unknown) => {},
-    login: async (_parent: unknown, args: unknown) => {},
+    register: async (_parent: unknown, args: inputRegister) => {
+      const payload = args.inputRegister;
+      const newUser = await register(payload);
+      return newUser;
+    },
+    // ! Sending a database _id to client might pose a security issue
+    login: async (_parent: unknown, args: loginInput) => {
+      const payload = args.inputLogin;
+      const loggedUser = await login(payload);
+      return loggedUser;
+    },
   },
 };
