@@ -9,12 +9,23 @@ import {
   productOrderResolvers,
   productOrderTypeDefs,
 } from "./schemas/order.js";
+import { pickupOrderResolvers, pickupOrderTypeDefs } from "./schemas/waste.js";
 
 // !! When compiling don't forget to add .js extension to each imported variables from 'created folders'!
 
 const server = new ApolloServer({
-  typeDefs: [typeDefs, productTypeDefs, productOrderTypeDefs], //userTypeDefs
-  resolvers: [resolvers, productResolvers, productOrderResolvers], //userResolvers
+  typeDefs: [
+    typeDefs,
+    productTypeDefs,
+    productOrderTypeDefs,
+    pickupOrderTypeDefs,
+  ], //userTypeDefs
+  resolvers: [
+    resolvers,
+    productResolvers,
+    productOrderResolvers,
+    pickupOrderResolvers,
+  ], //userResolvers
   introspection: true,
 });
 
