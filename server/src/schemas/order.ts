@@ -19,7 +19,7 @@ export const productOrderTypeDefs = `#graphql
     }
 
     type Query {
-        getProductOrder(status:String, userId:String): [ProductOrder]
+        getProductOrder(status:String): [ProductOrder]
         getProductOrderById(id: String!): ProductOrder
     }
 
@@ -39,10 +39,13 @@ export const productOrderResolvers = {
   Query: {
     getProductOrder: async (
       _parent: unknown,
-      args: { status: "Complete" | "Incomplete"; userId?: string }
+      args: { status: string | undefined },
+      contextValue: { authentication: () => Promise<TokenPayload> }
     ) => {
+      const { userId } = await contextValue.authentication();
       const { status } = args;
-      const data = await getAllProductOrder(status);
+
+      const data = await getAllProductOrder(userId as string, status);
       return data;
     },
     getProductOrderById: async (_parent: unknown, args: { id: string }) => {

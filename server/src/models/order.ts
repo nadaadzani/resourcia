@@ -37,16 +37,28 @@ export const addProductOrder = async (
 };
 
 export const getAllProductOrder = async (
-  status?: "Complete" | "Incomplete",
-  userId?: string
+  userId: string,
+  status?: string | undefined
 ) => {
   const collection = getCollection();
 
-  let body: { status?: string; _id?: ObjectId } = {};
-  if (status) body.status = status;
-  if (userId) body._id = new ObjectId(userId);
+  const userFound = await getUserById(userId);
 
-  const data = await collection.find(body).toArray();
+  if (userFound.role !== "Admin") {
+    let body: { status?: string; userId: ObjectId } = {
+      userId: new ObjectId(userId),
+    };
+    if (status) body.status = status;
+
+    const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
+
+    return data;
+  }
+
+  let body: { status?: string } = {};
+  if (status) body.status = status;
+
+  const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
 
   return data;
 };
@@ -62,7 +74,7 @@ export const changeStatusProductOrder = async (productOrderId: string) => {
   const collection = getCollection();
   await collection.updateOne(
     { _id: new ObjectId(productOrderId) },
-    { status: "Complete" }
+    { $set: { status: "Complete" } }
   );
   const data = await collection.findOne({ _id: new ObjectId(productOrderId) });
   return data;
