@@ -1,6 +1,10 @@
 import { FaStar } from "react-icons/fa6";
 import { FaCoins } from "react-icons/fa";
-const page = () => {
+import { fetchProductsById } from "../action";
+
+const page = async ({ params }: { params: { id: string } }) => {
+  const data = await fetchProductsById(params.id);
+  // console.log(params.id);
   return (
     <main className="min-h-screen pt-24 px-20">
       <div
@@ -26,9 +30,9 @@ const page = () => {
         </div>
         <div className="w-[40%] flex flex-col gap-5">
           <div className="px-4 py-2 flex justify-center w-[48%] items-center rounded-3xl border border-gray-800">
-            <h3 className="text-xl">Category Gadget</h3>
+            <h3 className="text-xl">{data?.category}</h3>
           </div>
-          <h2 className="text-5xl tracking-tight pt-5">IPhone 15 Pro Max </h2>
+          <h2 className="text-5xl tracking-tight pt-5">{data?.name} </h2>
           <div className="flex  text-3xl gap-1">
             <FaStar />
             <FaStar />
@@ -38,20 +42,14 @@ const page = () => {
           </div>
           <div className="flex gap-4 pt-5  ">
             <FaCoins className="text-yellow-500 text-5xl pt-1" />
-            <p className="text-5xl font-semibold tracking-wider line-through ">
-              1000
+            <p className="text-5xl font-semibold tracking-wider">
+              {data?.price}
             </p>
-            <p className="text-5xl font-semibold tracking-wider  ">800</p>
           </div>
           <div className="flex flex-col gap-28 justify-between">
             <div className="flex gap-5 pt-5 flex-col ">
               <h1 className="font-[200] text-3xl">Description</h1>
-              <p className="text-lg">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Minima, praesentium voluptate? Asperiores natus delectus
-                possimus esse expedita perspiciatis aperiam, eos ex, ducimus
-                repellat animi amet et veniam iste, voluptates non?
-              </p>
+              <p className="text-lg">{data?.description}</p>
             </div>
             <button className="bg-black text-2xl hover:bg-white hover:text-black duration-200 hover:border-black hover:border  transition-all ease-in-out text-white w-[50%] rounded-3xl px-3 py-3">
               Buy now

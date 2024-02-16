@@ -1,8 +1,11 @@
 import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
-import Link from "next/link";
+import { fetchProducts } from "./action";
 
-const page = () => {
+
+const page = async () => {
+  const products = await fetchProducts() 
+  // console.log(products);
   return (
     <main className="min-h-screen max-md:px-5 pt-24 px-20">
       <div
@@ -34,11 +37,9 @@ const page = () => {
             type="text"
           />
           <div className="grid grid-cols-3 max-md:grid-cols-2 gap-4 pt-4 pb-24">
-            <Card />
-            <Card />
-            <Card /> <Card /> <Card />
-            <Card />
-            <Card />
+            {products.map((prod, idx) => {
+              return <Card key={idx} data={prod} />;
+            })}
           </div>
           <Pagination />
         </div>
