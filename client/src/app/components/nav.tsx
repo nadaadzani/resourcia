@@ -1,11 +1,12 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "../../../node_modules/next/link";
 import { IoMdExit, IoMdLogIn } from "react-icons/io";
 import { GrShop } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
-import { RiLoginBoxFill } from "react-icons/ri";
+import { handleLogout } from "./action";
 
 // import { actionLogout } from "./actionLogout";
 
@@ -37,11 +38,13 @@ const Nav = () => {
             scrolled
               ? "bg-white text-gray-900  border border-gray-800 border-1"
               : "bg-transparent text-black"
-          }`}>
+          }`}
+        >
           <div className="w-[30%] ">
             <Link
               href={"/"}
-              className="text-4xl font-extrabold text-[#211C6A] tracking-tighter">
+              className="text-4xl font-extrabold text-[#211C6A] tracking-tighter"
+            >
               Resourcia^
             </Link>
           </div>
@@ -58,23 +61,21 @@ const Nav = () => {
             <div className="flex gap-9 text-end items-end justify-end px-20 ">
               <Link
                 href={"/wishlist"}
-                className="text-3xl flex  font-[300] justify-center items-center">
+                className="text-3xl flex  font-[300] justify-center items-center"
+              >
                 <GrShop />
               </Link>
               <Link
                 href={"/register"}
-                className="text-3xl flex  font-[300] justify-center items-center">
+                className="text-3xl flex  font-[300] justify-center items-center"
+              >
                 <FaUser />
               </Link>
-              <Link
-                href={"/login"}
-                className="text-3xl flex  font-[300] justify-center items-center">
-                <RiLoginBoxFill />
-              </Link>
-              <form>
+              <form action={handleLogout}>
                 <button
                   className="text-3xl flex  font-[300] justify-center items-center"
-                  type="submit">
+                  type="submit"
+                >
                   <IoMdExit />
                 </button>
               </form>
