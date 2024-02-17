@@ -5,7 +5,6 @@ import { fetchProducts } from "./action";
 
 const page = async () => {
   const products = await fetchProducts() 
-  // console.log(products);
   return (
     <main className="min-h-screen max-md:px-5 pt-24 px-20">
       <div

@@ -8,3 +8,7 @@ export type ProductsModel = {
     stock:number
 }
 
+export type AIChatProps = {
+    open:boolean
+    onClose: () => void
+}

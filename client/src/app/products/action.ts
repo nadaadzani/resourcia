@@ -22,7 +22,6 @@ export const fetchProducts = async () => {
   if (!response.ok) {
     throw new Error("Error in server..");
   }
-//   console.log(data.data.getProducts);
   return data.data.getProducts as ProductsModel[]
 };
 
@@ -48,3 +47,5 @@ export const fetchProductsById = async (id:string) => {
   
     return data.data.getProductById as ProductsModel
   };
+
+  

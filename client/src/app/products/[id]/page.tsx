@@ -4,7 +4,6 @@ import { fetchProductsById } from "../action";
 
 const page = async ({ params }: { params: { id: string } }) => {
   const data = await fetchProductsById(params.id);
-  // console.log(params.id);
   return (
     <main className="min-h-screen pt-24 px-20">
       <div
