@@ -12,7 +12,7 @@ export const addPickupOrder = async (
   if (!token?.value) redirect("/login");
   //   console.log(token);
 
-  const response = await fetch(url, {
+  await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
