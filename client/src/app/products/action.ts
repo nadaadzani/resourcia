@@ -3,8 +3,11 @@
 import { getProductById, getProducts } from "@/utils/queries";
 import { ProductsModel } from "@/utils/type";
 
-export const fetchProducts = async () => {
+export const fetchProducts = async ({search} : {search?:string | undefined}) => {
   const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  if (!search) {
+    search = ""
+  }
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -14,7 +17,7 @@ export const fetchProducts = async () => {
       query: getProducts,
       variables: {
         offset: 0,
-        search: "",
+        search: search 
       },
     }),
   });
@@ -48,4 +51,3 @@ export const fetchProductsById = async (id:string) => {
     return data.data.getProductById as ProductsModel
   };
 
-  
