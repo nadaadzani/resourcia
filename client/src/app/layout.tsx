@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 // import ChatBot from "@/components/ChatBot";
 // import AichatBot from "@/components/AichatBot";
 import AIChatButton from "@/components/AIChatButton";
+import { ClientFlashParams } from "@/components/ClientFlashParams";
 
 const DmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -22,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={DmSans.className}>
+        <ClientFlashParams />
         <Nav />
         {children}
-        <Footer/>
-        <AIChatButton/>
-        </body>
+        <Footer />
+        <AIChatButton />
+      </body>
     </html>
   );
 }

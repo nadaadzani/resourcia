@@ -8,7 +8,6 @@ import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
 import { handleLogout } from "./action";
 
-
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -65,7 +64,7 @@ const Nav = () => {
                 <GrShop />
               </Link>
               <Link
-                href={"/register"}
+                href={"/login"}
                 className="text-3xl flex  font-[300] justify-center items-center"
               >
                 <FaUser />

@@ -1,26 +1,25 @@
-import React from 'react'
-import { useQRCode } from 'next-qrcode'
- 
-function App() {
-  const { Canvas } = useQRCode()
- 
+import React from "react";
+import { useQRCode } from "next-qrcode";
+
+function App({ userId }: { userId: string | undefined }) {
+  const { Canvas } = useQRCode();
   return (
     <Canvas
-      text={'https://github.com/bunlong/next-qrcode'}
+      text={userId as string}
       options={{
-        type: 'image/jpeg',
+        type: "image/jpeg",
         quality: 0.3,
-        errorCorrectionLevel: 'M',
+        errorCorrectionLevel: "M",
         margin: 3,
         scale: 4,
         width: 400,
         color: {
-          dark: '#010599FF',
-        //   light: '#FFBF60FF',
+          dark: "#010599FF",
+          //   light: '#FFBF60FF',
         },
       }}
     />
-  )
+  );
 }
- 
-export default App
+
+export default App;

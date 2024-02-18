@@ -15,9 +15,10 @@ const Maps = () => {
   });
   const router = useRouter();
   const [center, setCenter] = useState({ lat: -6.8914747, lng: 107.6080842 });
-  const [selected, setSelected] = useState<null | { lat: number; lng: number }>(
-    null
-  );
+  const [selected, setSelected] = useState<null | {
+    lat: number | undefined;
+    lng: number | undefined;
+  }>(null);
   const [markers, setMarkers] = useState<{ lat: number; lng: number }[]>([]);
 
   const fetchMarker = async () => {
@@ -55,7 +56,6 @@ const Maps = () => {
     });
     if (!flag) {
       router.replace("/donate?error=Selected Place Is too Far From Warehouse");
-      router.refresh();
     } else {
       addPickupOrder(selected?.lat, selected?.lng);
     }
@@ -70,18 +70,17 @@ const Maps = () => {
       {isLoaded && (
         <>
           <PlacesAutoComplete setSelected={setSelected} setCenter={setCenter} />
-          <button
-            className="my-4 w-full h-[50px] bg-black rounded-2xl text-white"
-            onClick={handleSubmit}
-            disabled={selected ? false : true}
-          >
-            Set Pickup
-          </button>
+
           <div className=" w-full h-full flex flex-col items-center">
             <GoogleMap
               zoom={15}
               center={center}
               mapContainerClassName=" w-[600px] h-[450px] border-0"
+              onClick={(e) => {
+                const lat = e.latLng?.lat();
+                const lng = e.latLng?.lng();
+                setSelected({ lat, lng });
+              }}
             >
               {markers.length > 0 &&
                 markers.map((marker) => {
@@ -109,6 +108,13 @@ const Maps = () => {
                 />
               )}
             </GoogleMap>
+            <button
+              className="my-4 w-full h-[50px] bg-black rounded-2xl text-white"
+              onClick={handleSubmit}
+              disabled={selected ? false : true}
+            >
+              Set Pickup
+            </button>
           </div>
         </>
       )}

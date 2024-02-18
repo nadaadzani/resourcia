@@ -31,5 +31,5 @@ export const handleRegister = async (formData: FormData) => {
     }),
   });
   console.log(await response.json());
-  redirect("/login");
+  redirect("/login?success=Success Register Account");
 };

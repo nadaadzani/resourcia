@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { handleLogin } from "./action";
 
 const page = () => {
@@ -40,6 +41,7 @@ const page = () => {
                 </button>
               </div>
             </form>
+            <Link href="/register">Register Here</Link>
           </div>
         </div>
         <div className="w-[55%] bg-gray-200 ">

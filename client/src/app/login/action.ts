@@ -27,10 +27,10 @@ export const handleLogin = async (formData: FormData) => {
   const responseJson = await response.json();
 
   if ("errors" in responseJson)
-    redirect(`/login?=${responseJson.errors[0].message}`);
+    redirect(`/login?error=${responseJson.errors[0].message}`);
 
   cookies().set("token", responseJson.data.login.token);
   cookies().set("id", responseJson.data.login._id);
 
-  redirect("/");
+  redirect("/?success=Success Login");
 };
