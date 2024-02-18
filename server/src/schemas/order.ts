@@ -12,8 +12,9 @@ export const productOrderTypeDefs = `#graphql
         _id:ID
         userId:String
         productId:String
-        lat:String
-        lng:String
+        province:String
+        city:String
+        address:String
         status:String
         createdAt:String
     }
@@ -31,8 +32,9 @@ export const productOrderTypeDefs = `#graphql
 
 export type ProductOrderInput = {
   productId: string;
-  lat: string;
-  lng: string;
+  province: string;
+  city: string;
+  address: string;
 };
 
 export const productOrderResolvers = {
@@ -61,12 +63,13 @@ export const productOrderResolvers = {
       contextValue: { authentication: () => Promise<TokenPayload> }
     ) => {
       const { userId } = await contextValue.authentication();
-      const { productId, lat, lng } = args;
+      const { productId, province, city, address } = args;
       const productOrder = await addProductOrder(
         productId,
         userId as string,
-        lat,
-        lng
+        province,
+        city,
+        address
       );
       return productOrder;
     },
