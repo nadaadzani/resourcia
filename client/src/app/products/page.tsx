@@ -1,8 +1,11 @@
 import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
-import Link from "next/link";
+import { fetchProducts } from "./action";
+import Search from "./Search";
 
-const page = () => {
+
+const page = async () => {
+  const products = await fetchProducts() 
   return (
     <main className="min-h-screen max-md:px-5 pt-24 px-20">
       <div
@@ -28,17 +31,11 @@ const page = () => {
               clothes
             </button>
           </div>
-          <input
-            className="px-5 py-3.5  w-full border border-gray-800 text-xl rounded-2xl border-1 "
-            placeholder="Search here..."
-            type="text"
-          />
+          <Search/>
           <div className="grid grid-cols-3 max-md:grid-cols-2 gap-4 pt-4 pb-24">
-            <Card />
-            <Card />
-            <Card /> <Card /> <Card />
-            <Card />
-            <Card />
+            {products.map((prod, idx) => {
+              return <Card key={idx} data={prod} />;
+            })}
           </div>
           <Pagination />
         </div>

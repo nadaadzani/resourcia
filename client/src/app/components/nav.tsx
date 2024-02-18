@@ -8,7 +8,6 @@ import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
 import { handleLogout } from "./action";
 
-// import { actionLogout } from "./actionLogout";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);

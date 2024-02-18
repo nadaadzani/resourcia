@@ -47,7 +47,7 @@ const page = () => {
             className="object-cover h-[750px] w-full relative"
             src="https://i.pinimg.com/564x/8b/d5/22/8bd522c97e8fa5e4ad22a0715fe3ada6.jpg"
           />{" "}
-          <div className="px-10 bg-[#FCE354] absolute h-[250px] z-10 top-[500px] w-[470px] right-20 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
+          <div className="px-10 bg-[#FCE354] absolute h-[250px] z-4 top-[500px] w-[470px] right-20 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
             <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
             <p className="text-5xl font-semibold tracking-tight">
               Shop for a Better World!

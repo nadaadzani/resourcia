@@ -1,5 +1,6 @@
 "use client";
 
+import AichatBot from "@/components/AichatBot";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FcDonate } from "react-icons/fc";
@@ -140,6 +141,7 @@ export default function Home() {
           {/* <div className="text-8xl -bottom-10  absolute">😄 😆</div> */}
         </div>
       </div>
+      {/* <AichatBot open={true}  onClose={()=> true} /> */}
     </main>
   );
 }

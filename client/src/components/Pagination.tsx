@@ -3,11 +3,6 @@ import React from 'react'
 const Pagination = () => {
   return (
     <>
-    {/*
-    Heads up! 👋
-  
-    This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-  */}
     <ol className="flex justify-center gap-1 text-xs font-medium">
       <li>
         <a
