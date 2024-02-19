@@ -27,17 +27,17 @@ export const getLocation = `query GetLocation {
       lng
     }
   }`;
-export const getProductsOrder = `query GetProductOrder {
-    getProductOrder {
-      _id
-      userId
-      productId
-      lat
-      lng
-      status
-      createdAt
-    }
-  }`;
+export const getProductsOrder = `query Query($status: String) {
+  getProductOrder(status: $status) {
+    _id
+    userId
+    productId
+    province
+    address
+    status
+    createdAt
+  }
+}`;
 
 export const getPickupOrder = `query GetPickupOrder {
     getPickupOrder {
