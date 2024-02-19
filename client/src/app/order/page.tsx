@@ -1,4 +1,4 @@
-import { getProductsOrder } from "@/utils/queries";
+import { getPickupOrder, getProductsOrder } from "@/utils/queries";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -20,17 +20,32 @@ const Page = async () => {
   });
 
   const responseJson = await response.json();
+
   const productOrder = responseJson.data.getProductOrder as {
     _id: string;
     userId: string;
     productId: string;
+    product: { name: string };
     province: string;
     address: string;
     status: string;
     createdAt: string;
   }[];
-  console.log(productOrder);
 
+  const responsePickup = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token.value}`,
+    },
+    body: JSON.stringify({
+      query: getPickupOrder,
+    }),
+  });
+
+  const responsePickupJson = await responsePickup.json();
+
+  const orderPickup = responsePickupJson.data.getPickupOrder;
   return (
     <>
       <main className="min-h-full pb-40 max-md:flex-col-reverse max-md:px-3 flex px-20 pt-32 justify-between">
@@ -46,11 +61,15 @@ const Page = async () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="border px-4 py-2">Data 1</td>
-                  <td className="border px-4 py-2">Data 2</td>
-                  <td className="border px-4 py-2">Data 3</td>
-                </tr>
+                {productOrder.map((order, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="border px-4 py-2">{order._id}</td>
+                      <td className="border px-4 py-2">{order.product.name}</td>
+                      <td className="border px-4 py-2">{order.status}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -67,10 +86,14 @@ const Page = async () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="border px-4 py-2">Data A</td>
-                  <td className="border px-4 py-2">Data B</td>
-                </tr>
+                {orderPickup.map((order: { _id: string; status: string }) => {
+                  return (
+                    <tr>
+                      <td className="border px-4 py-2">{order._id}</td>
+                      <td className="border px-4 py-2">{order.status}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
