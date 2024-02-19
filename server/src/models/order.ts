@@ -36,29 +36,63 @@ export const addProductOrder = async (
   return order;
 };
 
-export const getAllProductOrder = async (
-  userId: string,
-  status?: string | undefined
-) => {
+export const getAllProductOrder = async (userId: string) => {
   const collection = getCollection();
 
   const userFound = await getUserById(userId);
 
   if (userFound.role !== "Admin") {
-    let body: { status?: string; userId: ObjectId } = {
-      userId: new ObjectId(userId),
-    };
-    if (status) body.status = status;
+    const aggAdmin = [
+      {
+        $lookup: {
+          from: "products",
+          localField: "productId",
+          foreignField: "_id",
+          as: "product",
+        },
+      },
+      {
+        $unwind: {
+          path: "$product",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+    ];
 
-    const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
+    const data = await collection
+      .aggregate(aggAdmin)
+      .sort({ createdAt: -1 })
+      .toArray();
 
     return data;
   }
 
-  let body: { status?: string } = {};
-  if (status) body.status = status;
+  const agg = [
+    {
+      $match: {
+        userId: new ObjectId("65ccbfa9ff6026ac00a5e56e"),
+      },
+    },
+    {
+      $lookup: {
+        from: "products",
+        localField: "productId",
+        foreignField: "_id",
+        as: "product",
+      },
+    },
+    {
+      $unwind: {
+        path: "$product",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+  ];
 
-  const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
+  const data = await collection
+    .aggregate(agg)
+    .sort({ createdAt: -1 })
+    .toArray();
 
   return data;
 };
