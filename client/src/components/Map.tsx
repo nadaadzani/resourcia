@@ -5,6 +5,7 @@ import { PlacesAutoComplete } from "./PlaceAutoComplete";
 import { useRouter } from "next/navigation";
 import { getDistanceFromLatLonInKm } from "@/utils/map";
 import { addPickupOrder } from "./action";
+import Loading from "@/app/loading";
 
 const url = process.env.NEXT_PUBLIC_API_URL as string;
 
@@ -66,10 +67,9 @@ const Maps = () => {
   }, []);
   return (
     <>
-      {!isLoaded && <h1 className=" m-8 text-center">Loading...</h1>}
+      {!isLoaded && <Loading/>}
       {isLoaded && (
         <>
-          <PlacesAutoComplete setSelected={setSelected} setCenter={setCenter} />
 
           <div className=" w-full h-full flex flex-col items-center">
             <GoogleMap
@@ -108,6 +108,7 @@ const Maps = () => {
                 />
               )}
             </GoogleMap>
+            <PlacesAutoComplete   setSelected={setSelected} setCenter={setCenter} />
             <button
               className="my-4 w-full h-[50px] bg-black rounded-2xl text-white"
               onClick={handleSubmit}

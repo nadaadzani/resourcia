@@ -96,12 +96,11 @@ const AichatBot = ({ open, onClose }: AIChatProps) => {
 
 export default AichatBot;
 
-// import React from 'react'
 
 export const ChatMesage = ({
   message: { role, content },
 }: {
-  message: Pick<Message, "role" | "content">;
+  message:Pick<Message,"role"| "content">;
 }) => {
   const isAssistant = role === "assistant";
   return (

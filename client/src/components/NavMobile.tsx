@@ -85,6 +85,12 @@ const NavMobile = () => {
             className="text-4xl cursor-pointer text-white font-semibold">
                 About
           </Link>
+          <Link
+            href={`/login`}
+            onClick={() => setIsOpen(false)}
+            className="text-4xl cursor-pointer text-white font-semibold">
+                Login
+          </Link>
         </li>
       </motion.ul>
     </nav>

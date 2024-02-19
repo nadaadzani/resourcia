@@ -10,7 +10,7 @@ const AIChatButton = () => {
       <button
         className="bottom-0 py-6 px-5 md:-translate-x-9 fixed right-0 z-2"
         onClick={() => setChatOpen(true)}>
-        <IoChatbubbleEllipsesOutline className="text-6xl" />
+        <IoChatbubbleEllipsesOutline className="text-6xl max-md:text-4xl" />
       </button>
       <AichatBot open={chatOpen} onClose={() => setChatOpen(false)} />
     </>
