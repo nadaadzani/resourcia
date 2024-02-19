@@ -1,4 +1,4 @@
-export const getProducts =`query GetProducts($offset: Int, $search: String) {
+export const getProducts = `query GetProducts($offset: Int, $search: String) {
     getProducts(offset: $offset, search: $search) {
       _id
       name
@@ -7,7 +7,7 @@ export const getProducts =`query GetProducts($offset: Int, $search: String) {
       category
       stock
     }
-  }`
+  }`;
 
 export const getProductById = `query GetProductById($getProductByIdId: String!) {
     getProductById(id: $getProductByIdId) {
@@ -27,17 +27,17 @@ export const getLocation = `query GetLocation {
       lng
     }
   }`;
-export const getProductsOrder = `query GetProductOrder {
-    getProductOrder {
-      _id
-      userId
-      productId
-      lat
-      lng
-      status
-      createdAt
-    }
-  }`;
+export const getProductsOrder = `query Query($status: String) {
+  getProductOrder(status: $status) {
+    _id
+    userId
+    productId
+    province
+    address
+    status
+    createdAt
+  }
+}`;
 
 export const getPickupOrder = `query GetPickupOrder {
     getPickupOrder {
@@ -67,6 +67,18 @@ export const getPickupOrderById = `query GetPickupOrderById($getPickupOrderByIdI
       userId
       lat
       lng
+      status
+      createdAt
+    }
+  }`;
+
+export const createProductOrder = `mutation CreateProductOrder($productId: String!, $province: String!, $address: String!) {
+    createProductOrder(productId: $productId, province: $province, address: $address) {
+      _id
+      userId
+      productId
+      province
+      address
       status
       createdAt
     }

@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-            
+import { handleLogout } from "./actionLogout";
+
 // NavLink
 const NavMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,36 +62,43 @@ const NavMobile = () => {
         </div>
 
         <li className=" flex text-center flex-col gap-10 mb-8">
-        <Link
+          <Link
             href={`/`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold">
-                Home
+            Home
           </Link>
           <Link
             href={`/products`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold">
-                Product
+            Product
           </Link>
           <Link
             href={`/donate`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold">
-                Donate
+            Donate
           </Link>
           <Link
             href={`/About`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold">
-                About
+            About
           </Link>
           <Link
             href={`/login`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold">
-                Login
+            Login
           </Link>
+          <form action={handleLogout}>
+            <button onClick={()=> setIsOpen(false)} type="submit" >
+              <p className="text-4xl cursor-pointer text-white font-semibold ">
+                Logout
+              </p>
+            </button>
+          </form>
         </li>
       </motion.ul>
     </nav>

@@ -74,7 +74,7 @@ const Maps = () => {
             <GoogleMap
               zoom={15}
               center={center}
-              mapContainerClassName=" w-[600px] max-md:w-[300px] h-[450px] border-0"
+              mapContainerClassName=" w-[600px] max-md:w-[370px] h-[450px] border-0"
               onClick={(e) => {
                 const lat = e.latLng?.lat();
                 const lng = e.latLng?.lng();

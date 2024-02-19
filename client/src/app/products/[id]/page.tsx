@@ -1,9 +1,53 @@
+"use client";
 import { FaStar } from "react-icons/fa6";
 import { FaCoins } from "react-icons/fa";
-import { fetchProductsById } from "../action";
+import { useEffect, useState } from "react";
+import { getProductById } from "@/utils/queries";
+import { ProductsModel } from "@/utils/type";
+import { handleCreateOrder } from "./action";
 
-const page = async ({ params }: { params: { id: string } }) => {
-  const data = await fetchProductsById(params.id);
+const Page = ({ params }: { params: { id: string } }) => {
+  const [data, setData] = useState<ProductsModel>();
+  const [province, setProvince] = useState<{ id: string; name: string }[]>([]);
+  const [selected, setSelected] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+
+  const fetchProductId = async (id: string) => {
+    const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: getProductById,
+        variables: {
+          getProductByIdId: `${id}`,
+        },
+      }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Error in server..");
+    }
+
+    setData(data.data.getProductById);
+  };
+
+  const fetchProvinces = async () => {
+    const response = await fetch(
+      "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
+      { method: "GET" }
+    );
+    const province = (await response.json()) as { id: string; name: string }[];
+    setProvince(province);
+  };
+
+  useEffect(() => {
+    fetchProductId(params.id);
+    fetchProvinces();
+  }, []);
+
   return (
     <main className="min-h-screen pb-20 pt-24 max-md:px-3 px-20">
       <div
@@ -51,27 +95,29 @@ const page = async ({ params }: { params: { id: string } }) => {
               <h1 className="font-[200] text-3xl">Description</h1>
               <p className="text-lg">{data?.description}</p>
             </div>
-            <form className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <label htmlFor="select1" className="font-[200] text-3xl">
                   Province
                 </label>
                 <select
                   id="select1"
-                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500">
-                  {/* Add options for the first select input */}
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+                  name="province"
+                  defaultValue=""
+                  onChange={(e) => {
+                    setSelected(e.target.value);
+                  }}
+                >
+                  <option value="" disabled>
+                    Choose Province
+                  </option>
+                  {province.map((prov) => {
+                    return <option key={prov.id} value={prov.name}>{prov.name}</option>;
+                  })}
                 </select>
               </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="select2" className="font-[200] text-3xl">
-                  City
-                </label>
-                <select
-                  id="select2"
-                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500">
-                  {/* Add options for the second select input */}
-                </select>
-              </div>
+
               <div className="flex flex-col gap-2">
                 <label htmlFor="textInput" className="font-[200] text-3xl">
                   Address
@@ -79,14 +125,22 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <input
                   type="text"
                   id="textInput"
+                  name="address"
                   className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
                   placeholder="Enter Address"
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
                 />
               </div>
-              <button className="bg-black text-2xl hover:bg-white hover:text-black duration-200 hover:border-black hover:border transition-all ease-in-out text-white w-[50%] rounded-lg px-3 py-3">
+              <button
+                disabled={!selected || !address}
+                className="bg-black text-2xl hover:bg-white hover:text-black duration-200 hover:border-black hover:border transition-all ease-in-out text-white w-[50%] rounded-lg px-3 py-3"
+                onClick={() => handleCreateOrder(selected, address, params.id)}
+              >
                 Buy now
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -94,4 +148,4 @@ const page = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Page;
