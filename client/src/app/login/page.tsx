@@ -4,12 +4,14 @@ import { handleLogin } from "./action";
 const page = () => {
   return (
     <>
-      <main className="flex pt-20 max-md:pt-16 max-md:flex-col  min-h-screen">
+      <main className="flex md:pt-20 max-md:flex-col  min-h-screen">
         <div className="w-[45%] max-md:w-full  bg-[#F1F4F7]">
-          <div className="flex flex-col gap-4 max-md:px-3 px-20 pt-[150px] ">
+          <div className="flex flex-col  gap-5 max-md:px-6 px-20 pt-[150px] max-md:pt-32 ">
             <p className="text-5xl tracking-tight font-bold">Login</p>
             <p className="font-[300] text-xl">Welcome again to our app!</p>
-            <form action={handleLogin} className="flex pt-5 flex-col gap-6">
+            <form
+              action={handleLogin}
+              className="flex pt-5 flex-col max-md:gap-8 gap-6">
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="email"
@@ -32,30 +34,35 @@ const page = () => {
                   Password
                 </label>
               </div>
-              <div className="pt-10">
+              <div className=" flex max-md:justify-center max-md:items-center pt-10">
                 <button
                   type="submit"
-                  className="text-black w-[30%] max-md:w-2/3 hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#BEDBFE] border border-black"
-                >
+                  className="text-black w-[30%] max-md:w-full hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-green-400 border border-black">
                   Login
                 </button>
               </div>
             </form>
-            <Link href="/register">Register Here</Link>
+            <div className="pb-20 text-lg max-md:text-center pt-10">
+              Dont have account yet?{" "}
+              <Link className="underline text-blue-600" href={"/register"}>
+                Register
+              </Link>{" "}
+              Here
+            </div>
           </div>
         </div>
-        <div className="w-[55%] bg-gray-200 ">
+        <div className="w-[55%] max-md:w-full bg-gray-200 ">
           <img
-            className="object-cover h-[750px] w-full relative"
+            className="object-cover max-md:h-[200px] h-[750px] w-full relative"
             src="https://i.pinimg.com/564x/8b/d5/22/8bd522c97e8fa5e4ad22a0715fe3ada6.jpg"
-          />{" "}
-          <div className="px-10 bg-[#FCE354] absolute h-[250px] z-4 top-[500px] w-[470px] right-20 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
+          />
+          <div className="px-10 max-md:hidden bg-[#FCE354] absolute h-[250px] z-4 top-[500px] w-[470px] right-20 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
             <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
             <p className="text-5xl font-semibold tracking-tight">
               Shop for a Better World!
             </p>
           </div>
-          <div className="px-10 bg-[#34CCFF] absolute h-[250px] top-[300px] w-[500px] translate-x-7 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
+          <div className="px-10 max-md:hidden bg-[#34CCFF] absolute h-[250px] top-[300px] w-[500px] translate-x-7 hover:scale-95 transition-all duration-200 hover:ease-in-out   rounded-xl  flex flex-col gap-4 py-10">
             <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
             <p className="text-5xl font-semibold tracking-tight">
               Shop for a Better World!

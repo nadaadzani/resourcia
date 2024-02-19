@@ -36,7 +36,7 @@ export const PlacesAutoComplete = ({
   };
   return (
     <>
-      <div className="mb-4 relative">
+      <div className="mb-4 w-full pt-8 relative">
         <Combobox value={value} onChange={handleSelect}>
           <Combobox.Input
             value={value}
@@ -53,8 +53,7 @@ export const PlacesAutoComplete = ({
                 <Combobox.Option
                   key={place_id}
                   value={description}
-                  className="cursor-pointer py-2 px-3 hover:bg-gray-100"
-                >
+                  className="cursor-pointer py-2 px-3 hover:bg-gray-100">
                   {description}
                 </Combobox.Option>
               ))}

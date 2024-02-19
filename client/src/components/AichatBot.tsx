@@ -26,7 +26,6 @@ const AichatBot = ({ open, onClose }: AIChatProps) => {
     }
   }, [messages]);
 
-
   const lastMsgUser = messages[messages.length - 1]?.role === "user";
   return (
     <div
@@ -41,7 +40,7 @@ const AichatBot = ({ open, onClose }: AIChatProps) => {
         <button
           onClick={onClose}
           className="mb-1 max-md:right-0 md:ms-auto-block">
-          <IoMdCloseCircle size={35} className="m-3" />
+          <IoMdCloseCircle size={35} className="md:p-3 mx-2 my--20" />
         </button>
       </div>
       <div className="bg-gray-100 shadow-lg flex flex-col h-[550px] ">
@@ -95,8 +94,6 @@ const AichatBot = ({ open, onClose }: AIChatProps) => {
 };
 
 export default AichatBot;
-
-// import React from 'react'
 
 export const ChatMesage = ({
   message: { role, content },

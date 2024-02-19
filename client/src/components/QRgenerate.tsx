@@ -12,7 +12,7 @@ function App({ userId }: { userId: string | undefined }) {
         errorCorrectionLevel: "M",
         margin: 3,
         scale: 4,
-        width: 400,
+        width: 300,
         color: {
           dark: "#010599FF",
           //   light: '#FFBF60FF',

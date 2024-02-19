@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "../../../node_modules/next/link";
 import { IoMdExit, IoMdLogIn } from "react-icons/io";
 import { GrShop } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
-import { handleLogout } from "./actionLogout";
+import { handleLogout } from "@/components/actionLogout";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +58,7 @@ const Nav = () => {
           <div className=" w-[30%] max-md:hidden ">
             <div className="flex gap-9 text-end items-end justify-end px-20 ">
               <Link
-                href={"/order"}
+                href={"/wishlist"}
                 className="text-3xl flex  font-[300] justify-center items-center"
               >
                 <GrShop />

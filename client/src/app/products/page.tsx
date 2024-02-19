@@ -3,9 +3,14 @@ import Pagination from "@/components/Pagination";
 import { fetchProducts } from "./action";
 import Search from "./Search";
 
-
-const page = async () => {
-  const products = await fetchProducts() 
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
+  const products = await fetchProducts({ search });
   return (
     <main className="min-h-screen max-md:px-5 pt-24 px-20">
       <div
@@ -31,8 +36,16 @@ const page = async () => {
               clothes
             </button>
           </div>
-          <Search/>
-          <div className="grid grid-cols-3 max-md:grid-cols-2 gap-4 pt-4 pb-24">
+          <Search />
+
+          {search && products.length === 0 && (
+            <div className="flex justify-center h-full items-center ">
+              <h1 className="text-3xl   text-gray-600 text-center font-semibold">
+                there is no such products
+              </h1>
+            </div>
+          )}
+          <div className="grid grid-cols-3 h-full max-md:grid-cols-2 gap-4 pt-4 pb-24">
             {products.map((prod, idx) => {
               return <Card key={idx} data={prod} />;
             })}

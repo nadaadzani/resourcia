@@ -62,7 +62,9 @@ export default function Home() {
                 hidden: { opacity: 0, y: 50 },
                 visible: { opacity: 1, y: 0 },
               }}>
-              <Link href={"/register"} className="text-black w-[30%] max-md:w-2/3 hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-yellow-500">
+              <Link
+                href={"/register"}
+                className="text-black w-[30%] text-center max-md:w-2/3 hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-yellow-500">
                 Sign Up
               </Link>
             </motion.div>
@@ -91,8 +93,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 pt-12 gap-5 px-24 max-md:px-6 max-md:grid-cols-1 ">
-        <div className="px-10 bg-[#953DFF] h-full text-white hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
+      <div className="grid grid-cols-2 pt-12 gap-5 px-24 max-md:px-6 max-md:grid-cols-1 ">
+        <div className="px-10 bg-[#1DE592] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
           <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
           <p className="text-6xl font-semibold tracking-tight">
             Shop for a Better World!
@@ -104,7 +106,7 @@ export default function Home() {
           </div>
           {/* <div className="text-8xl -bottom-10  absolute">😄 😆</div> */}
         </div>
-        <div className="px-10 bg-[#FF8F00] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
+        <div className="px-10 bg-[#91D1FC] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
           <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
           <p className="text-6xl font-semibold tracking-tight">
             Shop for a Better World!
@@ -115,7 +117,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="px-10 bg-[#FCE354] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
+        {/* <div className="px-10 bg-[#FCE354] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
           <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
           <p className="text-6xl font-semibold tracking-tight">
             Shop for a Better World!
@@ -125,10 +127,10 @@ export default function Home() {
               Learn more
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="w-full pt-10 px-24 max-md:px-5">
-        <div className="px-10 bg-[#953DFF] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
+        <div className="px-10 bg-[#FEDEA3] h-full  hover:scale-95 transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
           <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
           <p className="text-6xl font-semibold tracking-tight">
             Shop for a Better World!
