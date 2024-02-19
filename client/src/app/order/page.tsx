@@ -1,15 +1,18 @@
 import { getProductsOrder } from "@/utils/queries";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const url = process.env.NEXT_PUBLIC_API_URL as string;
 
 const Page = async () => {
   const token = cookies().get("token");
+  if (!token) redirect("/login?error=Please Login First");
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token.value}`,
     },
     body: JSON.stringify({
       query: getProductsOrder,
@@ -17,7 +20,16 @@ const Page = async () => {
   });
 
   const responseJson = await response.json();
-  console.log(responseJson);
+  const productOrder = responseJson.data.getProductOrder as {
+    _id: string;
+    userId: string;
+    productId: string;
+    province: string;
+    address: string;
+    status: string;
+    createdAt: string;
+  }[];
+  console.log(productOrder);
 
   return (
     <>
