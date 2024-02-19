@@ -27,12 +27,15 @@ export const getLocation = `query GetLocation {
       lng
     }
   }`;
-export const getProductsOrder = `query Query($status: String) {
-  getProductOrder(status: $status) {
+export const getProductsOrder = `query GetProductOrder {
+  getProductOrder {
     _id
     userId
     productId
     province
+    product {
+      name
+    }
     address
     status
     createdAt
