@@ -13,8 +13,9 @@ const getCollection = () => {
 export const addProductOrder = async (
   productId: string,
   userId: string,
-  lat: string,
-  lng: string
+  province: string,
+  city: string,
+  address: string
 ) => {
   const collection = getCollection();
 
@@ -26,8 +27,9 @@ export const addProductOrder = async (
   const response = await collection.insertOne({
     userId: new ObjectId(userId),
     productId: new ObjectId(productId),
-    lat,
-    lng,
+    province,
+    city,
+    address,
     status: "Incomplete",
     createdAt: new Date(),
   });

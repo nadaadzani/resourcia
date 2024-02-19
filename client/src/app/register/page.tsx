@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import { handleRegister } from "./action";
 
 const page = () => {
   return (
@@ -10,11 +10,12 @@ const page = () => {
             <p className="font-[300] text-xl">
               Welcome and create account here
             </p>
-            <div className="flex pt-5 flex-col gap-6">
+            <form className="flex pt-5 flex-col gap-6" action={handleRegister}>
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="email"
                   required
+                  name="email"
                   className="peer h-full w-full border-b border-gray-800 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-800 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
                 />
                 <label className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -24,15 +25,18 @@ const page = () => {
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="fullname"
+                  name="fullName"
                   className="peer h-full w-full border-b border-gray-800 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
                 />
                 <label className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  FullName
+                  Full Name
                 </label>
               </div>
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="password"
+                  type="password"
+                  name="password"
                   className="peer h-full w-full border-b border-gray-800 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
                 />
                 <label className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -40,11 +44,14 @@ const page = () => {
                 </label>
               </div>
               <div className="pt-10">
-                <button className="text-black w-[30%] max-md:w-2/3 hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#BEDBFE] border border-black">
+                <button
+                  type="submit"
+                  className="text-black w-[30%] max-md:w-2/3 hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#BEDBFE] border border-black"
+                >
                   Sign Up
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <div className="w-[55%] bg-gray-200 ">

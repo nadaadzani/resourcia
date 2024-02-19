@@ -11,7 +11,8 @@ const page = async ({ params }: { params: { id: string } }) => {
           backgroundImage: `url("https://i.pinimg.com/474x/2a/a4/52/2aa452455c658fc46cec0a80e6e08986.jpg")`,
           backgroundSize: "cover",
         }}
-        className="w-full text-white max-md:py-2 py-5 max-md:text-black rounded-xl ">
+        className="w-full text-white max-md:py-2 py-5 max-md:text-black rounded-xl "
+      >
         <div className="py-7 px-10 max-md:py-2 max-md:px-5 flex flex-col max-md:gap-3 gap-6">
           <p className="text-2xl max-md:text-xl font-bold">Products</p>
           <p className="text-5xl max-md:text-3xl font-bold tracking-tighter">
@@ -45,14 +46,49 @@ const page = async ({ params }: { params: { id: string } }) => {
               {data?.price}
             </p>
           </div>
-          <div className="flex flex-col gap-28 justify-between">
+          <div className="flex flex-col gap-4 justify-between">
             <div className="flex gap-5 pt-5 flex-col ">
               <h1 className="font-[200] text-3xl">Description</h1>
               <p className="text-lg">{data?.description}</p>
             </div>
-            <button className="bg-black text-2xl hover:bg-white hover:text-black duration-200 hover:border-black hover:border  transition-all ease-in-out text-white w-[50%] rounded-3xl px-3 py-3">
-              Buy now
-            </button>
+            <form className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="select1" className="font-[200] text-3xl">
+                  Province
+                </label>
+                <select
+                  id="select1"
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+                >
+                  {/* Add options for the first select input */}
+                </select>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="select2" className="font-[200] text-3xl">
+                  City
+                </label>
+                <select
+                  id="select2"
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+                >
+                  {/* Add options for the second select input */}
+                </select>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="textInput" className="font-[200] text-3xl">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  id="textInput"
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+                  placeholder="Enter Address"
+                />
+              </div>
+              <button className="bg-black text-2xl hover:bg-white hover:text-black duration-200 hover:border-black hover:border transition-all ease-in-out text-white w-[50%] rounded-lg px-3 py-3">
+                Buy now
+              </button>
+            </form>
           </div>
         </div>
       </div>

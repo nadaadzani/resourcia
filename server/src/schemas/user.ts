@@ -1,7 +1,6 @@
-import { getDatabase } from "../config/mongoConnection";
 import { login, register } from "../models/user.js";
 
-export const typeDefs = `#graphql
+export const userTypeDefs = `#graphql
     type User {
         _id: ID
         email: String!
@@ -52,7 +51,7 @@ type loginInput = {
   };
 };
 
-export const resolvers = {
+export const userResolvers = {
   Query: {
     getUserByLoginInfo: async (_parent: unknown, args: unknown) => {},
   },

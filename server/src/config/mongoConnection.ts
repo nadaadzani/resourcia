@@ -1,7 +1,6 @@
 import { Db, MongoClient, ObjectId } from "mongodb";
 
-const url =
-  "mongodb+srv://nadaadzani:mendokusainene@cluster0.w2fibaz.mongodb.net/";
+const url = process.env.MONGODB_URI;
 const client = new MongoClient(url);
 
 const dbName: string = "resourcia";

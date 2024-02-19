@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { resolvers, typeDefs } from "./schemas/user.js";
+import { userResolvers, userTypeDefs } from "./schemas/user.js";
 import { productResolvers, productTypeDefs } from "./schemas/product.js";
 import { mongoConnect } from "./config/mongoConnection.js";
 import { authentication } from "./middlewares/auth.js";
@@ -16,14 +16,14 @@ import { locationResolvers, locationTypeDefs } from "./schemas/location.js";
 
 const server = new ApolloServer({
   typeDefs: [
-    typeDefs,
+    userTypeDefs,
     productTypeDefs,
     productOrderTypeDefs,
     pickupOrderTypeDefs,
     locationTypeDefs,
   ],
   resolvers: [
-    resolvers,
+    userResolvers,
     productResolvers,
     productOrderResolvers,
     pickupOrderResolvers,

@@ -8,6 +8,7 @@ export const productTypeDefs = `#graphql
         description: String!
         category: String # Dijadiin Array (?)
         stock: Int
+        imageUrl: String
     }
 
     type Query {
