@@ -5,15 +5,15 @@ import { fetchProductsById } from "../action";
 const page = async ({ params }: { params: { id: string } }) => {
   const data = await fetchProductsById(params.id);
   return (
-    <main className="min-h-screen pt-24 px-20">
+    <main className="min-h-screen pb-20 pt-24 max-md:px-3 px-20">
       <div
         style={{
           backgroundImage: `url("https://i.pinimg.com/474x/2a/a4/52/2aa452455c658fc46cec0a80e6e08986.jpg")`,
           backgroundSize: "cover",
+      
         }}
-        className="w-full text-white max-md:py-2 py-5 max-md:text-black rounded-xl "
-      >
-        <div className="py-7 px-10 max-md:py-2 max-md:px-5 flex flex-col max-md:gap-3 gap-6">
+        className="w-full text-white  max-md:py-2 py-5 max-md:text-black  rounded-xl ">
+        <div className="py-7 px-10 max-md:py-2 max-md:px-5 max-md:w-full flex flex-col max-md:gap-3 gap-6">
           <p className="text-2xl max-md:text-xl font-bold">Products</p>
           <p className="text-5xl max-md:text-3xl font-bold tracking-tighter">
             Get 20% discount for first buy!
@@ -28,12 +28,12 @@ const page = async ({ params }: { params: { id: string } }) => {
             alt=""
           />
         </div>
-        <div className="w-[40%] flex flex-col gap-5">
-          <div className="px-4 py-2 flex justify-center w-[48%] items-center rounded-3xl border border-gray-800">
+        <div className="w-[40%] max-md:w-full max-md:px-3 flex flex-col gap-5">
+          <div className="px-4 py-2 flex justify-center w-[48%] max-md:w-full items-center rounded-3xl border border-gray-800">
             <h3 className="text-xl">{data?.category}</h3>
           </div>
-          <h2 className="text-5xl tracking-tight pt-5">{data?.name} </h2>
-          <div className="flex  text-3xl gap-1">
+          <h2 className="text-5xl max-md:text-4xl tracking-tight pt-5">{data?.name} </h2>
+          <div className="flex max-md:text-2xl  text-3xl gap-1">
             <FaStar />
             <FaStar />
             <FaStar />
@@ -42,7 +42,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           </div>
           <div className="flex gap-4 pt-5  ">
             <FaCoins className="text-yellow-500 text-5xl pt-1" />
-            <p className="text-5xl font-semibold tracking-wider">
+            <p className="text-5xl max-md:text-4xl font-semibold tracking-wider">
               {data?.price}
             </p>
           </div>
@@ -58,8 +58,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 </label>
                 <select
                   id="select1"
-                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-                >
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500">
                   {/* Add options for the first select input */}
                 </select>
               </div>
@@ -69,8 +68,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 </label>
                 <select
                   id="select2"
-                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-                >
+                  className="text-lg border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500">
                   {/* Add options for the second select input */}
                 </select>
               </div>

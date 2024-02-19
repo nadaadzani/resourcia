@@ -51,8 +51,8 @@ const Nav = () => {
               <Link className="first-letter:uppercase" href={"/"}>
                 home
               </Link>
-              <Link href={"/products"}>Product</Link>
               <Link href={"/donate"}>Donate</Link>
+              <Link href={"/products"}>Product</Link>
             </ul>
           </div>
           <div className=" w-[30%] max-md:hidden ">

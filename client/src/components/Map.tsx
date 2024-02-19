@@ -67,21 +67,19 @@ const Maps = () => {
   }, []);
   return (
     <>
-      {!isLoaded && <Loading/>}
+      {!isLoaded && <Loading />}
       {isLoaded && (
         <>
-
           <div className=" w-full h-full flex flex-col items-center">
             <GoogleMap
               zoom={15}
               center={center}
-              mapContainerClassName=" w-[600px] h-[450px] border-0"
+              mapContainerClassName=" w-[600px] max-md:w-[300px] h-[450px] border-0"
               onClick={(e) => {
                 const lat = e.latLng?.lat();
                 const lng = e.latLng?.lng();
                 setSelected({ lat, lng });
-              }}
-            >
+              }}>
               {markers.length > 0 &&
                 markers.map((marker) => {
                   return (
@@ -108,12 +106,14 @@ const Maps = () => {
                 />
               )}
             </GoogleMap>
-            <PlacesAutoComplete   setSelected={setSelected} setCenter={setCenter} />
+            <PlacesAutoComplete
+              setSelected={setSelected}
+              setCenter={setCenter}
+            />
             <button
-              className="my-4 w-full h-[50px] bg-black rounded-2xl text-white"
+              className="my-4 w-full hover:bg-white text-lg transition-all duration-200 hover:text-black hover:bg-[#1DE592] hover:border-black h-[50px] bg-black rounded-2xl text-white"
               onClick={handleSubmit}
-              disabled={selected ? false : true}
-            >
+              disabled={selected ? false : true}>
               Set Pickup
             </button>
           </div>
