@@ -14,7 +14,6 @@ export const addProductOrder = async (
   productId: string,
   userId: string,
   province: string,
-  city: string,
   address: string
 ) => {
   const collection = getCollection();
@@ -28,7 +27,6 @@ export const addProductOrder = async (
     userId: new ObjectId(userId),
     productId: new ObjectId(productId),
     province,
-    city,
     address,
     status: "Incomplete",
     createdAt: new Date(),

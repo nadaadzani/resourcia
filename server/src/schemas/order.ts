@@ -13,7 +13,6 @@ export const productOrderTypeDefs = `#graphql
         userId:String
         productId:String
         province:String
-        city:String
         address:String
         status:String
         createdAt:String
@@ -25,7 +24,7 @@ export const productOrderTypeDefs = `#graphql
     }
 
     type Mutation {
-        createProductOrder(productId:String!, lat:String!, lng:String!): ProductOrder
+        createProductOrder(productId:String!, province:String!, address:String!): ProductOrder
         changeStatusProductOrder(productOrderId:String!):ProductOrder
     }
 `;
@@ -33,7 +32,6 @@ export const productOrderTypeDefs = `#graphql
 export type ProductOrderInput = {
   productId: string;
   province: string;
-  city: string;
   address: string;
 };
 
@@ -63,12 +61,11 @@ export const productOrderResolvers = {
       contextValue: { authentication: () => Promise<TokenPayload> }
     ) => {
       const { userId } = await contextValue.authentication();
-      const { productId, province, city, address } = args;
+      const { productId, province, address } = args;
       const productOrder = await addProductOrder(
         productId,
         userId as string,
         province,
-        city,
         address
       );
       return productOrder;
