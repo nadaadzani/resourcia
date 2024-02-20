@@ -1,4 +1,11 @@
-import { adminLogin, login, register } from "../models/user.js";
+import { GraphQLError } from "graphql";
+import {
+  TokenPayload,
+  addPoin,
+  adminLogin,
+  login,
+  register,
+} from "../models/user.js";
 
 export const userTypeDefs = `#graphql
     type User {
@@ -34,6 +41,7 @@ export const userTypeDefs = `#graphql
         register(inputRegister: RegisterInput!): User
         login(inputLogin: LoginInput!): LoginResponse
         adminLogin(inputLogin: LoginInput!): LoginResponse
+        addPoin(poin:Int, userId:String):User
     }
 `;
 
@@ -69,6 +77,17 @@ export const userResolvers = {
       const payload = args.inputLogin;
       const loggedUser = await adminLogin(payload);
       return loggedUser;
+    },
+    addPoin: async (
+      _parent: unknown,
+      args: { poin: number; userId: string },
+      contextValue: { authentication: () => Promise<TokenPayload> }
+    ) => {
+      const { poin, userId } = args;
+      const { role } = await contextValue.authentication();
+      if (role !== "Admin") throw new GraphQLError("Forbidden");
+      const user = await addPoin(poin, userId);
+      return user;
     },
   },
 };

@@ -1,6 +1,10 @@
+import { cookies } from "next/headers";
 import { handleLoginAdmin } from "./action";
+import { redirect } from "next/navigation";
 
 const Page = () => {
+  const token = cookies().get("tokenAdmin");
+  if (token) redirect("/admin");
   return (
     <>
       <section className="w-full h-screen bg-rose-600 flex items-center justify-center">

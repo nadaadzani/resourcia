@@ -88,7 +88,7 @@ const Page = async () => {
               <tbody>
                 {orderPickup.map((order: { _id: string; status: string }) => {
                   return (
-                    <tr>
+                    <tr key={order._id}>
                       <td className="border px-4 py-2">{order._id}</td>
                       <td className="border px-4 py-2">{order.status}</td>
                     </tr>

@@ -28,6 +28,8 @@ export const handleCreateOrder = async (
     }),
   });
   const responseJson = await response.json();
-  console.log(responseJson);
+  if ("errors" in responseJson)
+    redirect(`/?error=${responseJson.errors[0].message}`);
+
   redirect("/?success=Success Create Order");
 };

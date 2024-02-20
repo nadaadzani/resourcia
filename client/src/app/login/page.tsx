@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { handleLogin } from "./action";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const page = () => {
+  const token = cookies().get("token");
+  if (token) redirect("/?error=Already Login");
   return (
     <>
       <main className="flex md:pt-20 max-md:flex-col  min-h-screen">
@@ -11,7 +15,8 @@ const page = () => {
             <p className="font-[300] text-xl">Welcome again to our app!</p>
             <form
               action={handleLogin}
-              className="flex pt-5 flex-col max-md:gap-8 gap-6">
+              className="flex pt-5 flex-col max-md:gap-8 gap-6"
+            >
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="email"
@@ -37,7 +42,8 @@ const page = () => {
               <div className=" flex max-md:justify-center max-md:items-center pt-10">
                 <button
                   type="submit"
-                  className="text-black w-[30%] max-md:w-full hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-green-400 border border-black">
+                  className="text-black w-[30%] max-md:w-full hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-green-400 border border-black"
+                >
                   Login
                 </button>
               </div>

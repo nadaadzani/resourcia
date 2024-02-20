@@ -1,25 +1,36 @@
+"use client";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { handleAddPoin } from "./action";
+import { useState } from "react";
 
-export default function FormAddPoints() {
+export default function FormAddPoints({ id }: { id: string }) {
+  const [poin, setPoin] = useState<number>(0);
   return (
     <>
-      <form action="" className="flex flex-col items-center gap-8 py-6">
+      <form
+        action={() => {
+          handleAddPoin(id, poin);
+        }}
+        className="flex flex-col items-center gap-8 py-6"
+      >
         <div className="">
-          <label htmlFor="">Order ID #32KoQ14</label>
+          <label htmlFor="">#ID {id}</label>
         </div>
 
         <div className="flex flex-row items-center">
           <label htmlFor="">Amount:</label>
           <input
-            type="text"
-            value={"2.5kg"}
+            type="number"
+            placeholder="in Kg"
             className=" w-16 px-2 h-6 ml-2 border border-black rounded-lg"
+            onChange={(e) => {
+              setPoin(Number(e.target.value));
+            }}
           />
-
+          Kg
           <FaArrowRightLong className="ml-4" />
-
           <label htmlFor="" className="ml-4">
-            25 points
+            {poin} points
           </label>
         </div>
 

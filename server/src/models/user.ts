@@ -113,3 +113,31 @@ export const adminLogin = async (payload: inputLogin) => {
 
   return { _id: user._id, token };
 };
+
+export const addPoin = async (poin: number, userId: string) => {
+  const userCollection = getCollection();
+
+  const user = await userCollection.findOne({
+    _id: new ObjectId(userId),
+  });
+
+  if (!user) {
+    throw new GraphQLError("Invalid email or password");
+  }
+  let totalPoint = user.totalPoint + poin;
+
+  await userCollection.updateOne(
+    { _id: new ObjectId(userId) },
+    {
+      $set: { totalPoint },
+    }
+  );
+
+  const userFound = await userCollection.findOne(
+    {
+      _id: new ObjectId(userId),
+    },
+    { projection: { password: 0 } }
+  );
+  return userFound;
+};

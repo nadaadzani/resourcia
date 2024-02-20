@@ -1,13 +1,14 @@
-export const getProducts = `query GetProducts($offset: Int, $search: String) {
-    getProducts(offset: $offset, search: $search) {
-      _id
-      name
-      price
-      description
-      category
-      stock
-    }
-  }`;
+export const getProducts = `query GetProducts($search: String, $filter: String) {
+  getProducts(search: $search, filter: $filter) {
+    _id
+    name
+    price
+    description
+    category
+    stock
+    image
+  }
+}`;
 
 export const getProductById = `query GetProductById($getProductByIdId: String!) {
     getProductById(id: $getProductByIdId) {
@@ -17,6 +18,7 @@ export const getProductById = `query GetProductById($getProductByIdId: String!) 
       description
       category
       stock
+      image
     }
   }`;
 
@@ -107,5 +109,16 @@ export const changePickupOrderStatus = `mutation ChangeStatusPickupOrder($pickup
     lng
     status
     createdAt
+  }
+}`;
+
+export const addPoinUser = `mutation AddPoin($poin: Int, $userId: String) {
+  addPoin(poin: $poin, userId: $userId) {
+    _id
+    email
+    password
+    fullName
+    role
+    totalPoint
   }
 }`;

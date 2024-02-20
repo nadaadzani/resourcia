@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  addPoinUser,
   changePickupOrderStatus,
   changeProductOrderStatus,
 } from "@/utils/queries";
@@ -58,6 +59,7 @@ export const handleChangeProductOrderStatus = async (id: string) => {
     }),
   });
   revalidatePath("/admin");
+  redirect("/admin?success=Order Completed");
 };
 
 export const handleChangePickupOrderStatus = async (id: string) => {
@@ -76,4 +78,29 @@ export const handleChangePickupOrderStatus = async (id: string) => {
     }),
   });
   revalidatePath("/admin");
+  redirect("/admin?success=Order Completed");
+};
+
+export const handleAddPoin = async (id: string, poin: number) => {
+  const token = cookies().get("tokenAdmin");
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token?.value}`,
+    },
+    body: JSON.stringify({
+      query: addPoinUser,
+      variables: {
+        poin,
+        userId: id,
+      },
+    }),
+  });
+
+  const responseJson = await response.json();
+  if ("errors" in responseJson)
+    redirect(`/admin?error=${responseJson.errors[0].message}`);
+  console.log(responseJson);
+  redirect("/admin?success=Success Add Poin");
 };

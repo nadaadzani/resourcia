@@ -73,20 +73,7 @@ const Footer = () => {
               the 1500s.
             </p>
           </div>
-          <form
-          // onSubmit={(e) => e.preventDefault()}
-          >
-            <label className="block pt-4 pb-2">Stay up to date</label>
-            <div className="max-w-sm flex items-center border rounded-md p-1">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full p-2.5 outline-none"
-              />
-              <button className="p-2.5 rounded-md text-white bg-[#191919] outline-none shadow-md focus:shadow-none sm:px-5">
-                Subscribe
-              </button>
-            </div>
+          <div className=" mt-4">
             {isLoaded && (
               <GoogleMap
                 zoom={15}
@@ -99,16 +86,7 @@ const Footer = () => {
                 />
               </GoogleMap>
             )}
-            {/* <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15863.051724340203!2d106.64092014999999!3d-6.2948547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1707815595272!5m2!1sen!2sid"
-              width={400}
-              height={200}
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            /> */}
-          </form>
+          </div>
         </div>
 
         <div className="flex-1 mt-10 space-y-6 items-center justify-between sm:flex md:space-y-0 md:mt-0">

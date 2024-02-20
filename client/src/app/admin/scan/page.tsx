@@ -36,6 +36,7 @@ const Page = () => {
     scanner.render(success, error);
     return () => {
       scanner.clear();
+      localStorage.removeItem("HTML5_QRCODE_DATA");
     };
   }, []);
 
@@ -50,7 +51,7 @@ const Page = () => {
               {/* <div>
                 Success read QR scan: <span>{scanResult}</span>
               </div> */}
-              <FormAddPoints />
+              <FormAddPoints id={scanResult} />
             </>
           ) : (
             <>

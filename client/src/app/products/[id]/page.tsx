@@ -67,8 +67,8 @@ const Page = ({ params }: { params: { id: string } }) => {
       <div className=" flex px-20 max-md:px-3 max-md:flex-col pt-5 justify-between">
         <div className="w-[60%] max-md:w-full flex flex-col gap-5">
           <img
-            className="h-full object-cover max-md:w-full w-[80%]"
-            src="https://i.pinimg.com/474x/9f/e3/b5/9fe3b56b082db6cf30e6b5cd4a47d2c3.jpg"
+            className="h-full object-contain max-md:w-full w-[80%]"
+            src={data?.image}
             alt=""
           />
         </div>

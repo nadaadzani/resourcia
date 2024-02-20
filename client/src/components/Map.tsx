@@ -79,21 +79,21 @@ const Maps = () => {
                 const lat = e.latLng?.lat();
                 const lng = e.latLng?.lng();
                 setSelected({ lat, lng });
-              }}>
+              }}
+            >
               {markers.length > 0 &&
-                markers.map((marker) => {
+                markers.map((marker, idx) => {
                   return (
-                    <>
-                      <Marker
-                        position={{
-                          lat: Number(marker.lat),
-                          lng: Number(marker.lng),
-                        }}
-                        label={{
-                          text: `Resourcia Warehouse`, // Dynamic label with warehouse number
-                        }}
-                      />
-                    </>
+                    <Marker
+                      position={{
+                        lat: Number(marker.lat),
+                        lng: Number(marker.lng),
+                      }}
+                      label={{
+                        text: `Resourcia Warehouse`, // Dynamic label with warehouse number
+                      }}
+                      key={idx}
+                    />
                   );
                 })}
               {selected && (
@@ -111,9 +111,10 @@ const Maps = () => {
               setCenter={setCenter}
             />
             <button
-              className="my-4 w-full hover:bg-white text-lg transition-all duration-200 hover:text-black hover:bg-[#1DE592] hover:border-black h-[50px] bg-black rounded-2xl text-white"
+              className="my-4 w-full text-lg transition-all duration-200 hover:text-black hover:bg-[#1DE592] hover:border-black h-[50px] bg-black rounded-2xl text-white"
               onClick={handleSubmit}
-              disabled={selected ? false : true}>
+              disabled={selected ? false : true}
+            >
               Set Pickup
             </button>
           </div>

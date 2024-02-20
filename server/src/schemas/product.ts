@@ -8,11 +8,11 @@ export const productTypeDefs = `#graphql
         description: String!
         category: String
         stock: Int
-        imageUrl: String
+        image: String
     }
 
     type Query {
-        getProducts(search: String, offset: Int): [Product]
+        getProducts(search: String, filter: String): [Product]
         getProductById(id: String!): Product
     }
 
@@ -23,14 +23,14 @@ export const productTypeDefs = `#graphql
 
 type UserInput = {
   search?: string;
-  offset: number;
+  filter?: string;
 };
 
 export const productResolvers = {
   Query: {
     getProducts: async (_parent: unknown, args: UserInput) => {
-      const { search, offset } = args;
-      const products = await getProducts(search, offset);
+      const { search, filter } = args;
+      const products = await getProducts(search, filter);
       return products;
     },
     getProductById: async (_parent: unknown, args: { id: string }) => {
