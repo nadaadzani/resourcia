@@ -15,7 +15,6 @@ export const addPickupOrder = async (
 ) => {
   const token = cookies().get("token");
   if (!token?.value) redirect("/login");
-  //   console.log(token);
 
   await fetch(url, {
     method: "POST",
@@ -45,7 +44,7 @@ export const addPickupOrder = async (
 
 export const handleChangeProductOrderStatus = async (id: string) => {
   const token = cookies().get("tokenAdmin");
-  const response = await fetch(url, {
+  await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,14 +57,12 @@ export const handleChangeProductOrderStatus = async (id: string) => {
       },
     }),
   });
-  const responseJson = await response.json();
-  console.log(responseJson);
   revalidatePath("/admin");
 };
 
 export const handleChangePickupOrderStatus = async (id: string) => {
   const token = cookies().get("tokenAdmin");
-  const response = await fetch(url, {
+  await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -78,7 +75,5 @@ export const handleChangePickupOrderStatus = async (id: string) => {
       },
     }),
   });
-  const responseJson = await response.json();
-  console.log(responseJson);
   revalidatePath("/admin");
 };
