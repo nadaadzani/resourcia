@@ -8,7 +8,7 @@ import { ImCross } from "react-icons/im";
 export default function Home() {
   return (
     <>
-      {/* <Dashboard />
+      <Dashboard />
       <main className="">
         <div className="flex w-full lg:justify-between lg:pl-72 lg:pr-16 min-[320px]:pt-28 min-[320px]:px-6 min-[320px]:text-sm lg:pt-8 min-[320px]:justify-center">
           <h1 className="font-semibold text-2xl min-[320px]:text-xl">
@@ -26,11 +26,11 @@ export default function Home() {
               <option value="apr">April 2024</option>
             </select>
           </div>
-        </div> */}
+        </div>
 
-      {/* <div className="w-full min-h-screen bg-gray-200 lg:mt-8 min-[320px]:mt-4"> */}
-      {/* Every "outer" container in here must have pl-72 pr-16 for LG media query!!*/}
-      {/* <section className="flex flex-col lg:pl-72 lg:pr-16 pt-4 gap-2 min-[320px]:px-6">
+        <div className="w-full min-h-screen bg-gray-200 lg:mt-8 min-[320px]:mt-4">
+          {/* Every "outer" container in here must have pl-72 pr-16 for LG media query!!*/}
+          <section className="flex flex-col lg:pl-72 lg:pr-16 pt-4 gap-2 min-[320px]:px-6">
             <h1 className="font-semibold text-xl min-[320px]:text-center lg:text-left">
               Summary
             </h1>
@@ -64,11 +64,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </section> */}
+          </section>
 
-      {/* --- */}
+          {/* --- */}
 
-      {/* <section className="flex lg:flex-row lg:pl-72 lg:pr-16 pt-8 gap-8 min-[320px]:flex-col">
+          <section className="flex lg:flex-row lg:pl-72 lg:pr-16 pt-8 gap-8 min-[320px]:flex-col">
             <div className="flex flex-col w-1/2 min-[320px]:w-[90%] min-[320px]:mx-auto">
               <h1 className="font-semibold text-xl">Product Orders</h1>
               <div className="w-full h-80 bg-white rounded-xl mt-4">
@@ -127,13 +127,13 @@ export default function Home() {
                 </table>
               </div>
             </div>
-          </section> */}
+          </section>
 
-      {/* <section className="pl-72 pr-16">
+          {/* <section className="pl-72 pr-16">
             <QrImage />
           </section> */}
-      {/* </div>
-      </main> */}
+        </div>
+      </main>
     </>
   );
 }

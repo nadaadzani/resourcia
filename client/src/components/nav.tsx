@@ -52,7 +52,7 @@ const Nav = () => {
                 home
               </Link>
               <Link href={"/donate"}>Donate</Link>
-              <Link href={"/products"}>Product</Link>
+              <Link href={"/products"}>Redeem</Link>
             </ul>
           </div>
           <div className=" w-[30%] max-md:hidden ">

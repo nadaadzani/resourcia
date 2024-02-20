@@ -16,7 +16,7 @@ export default function GlobalLayout({
 }) {
   const pathname = usePathname();
 
-  if (pathname.startsWith("/admin")) {
+  if (pathname.includes("/admin")) {
     return (
       <>
         <html lang="en">
