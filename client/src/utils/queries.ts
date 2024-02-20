@@ -122,3 +122,14 @@ export const addPoinUser = `mutation AddPoin($poin: Int, $userId: String) {
     totalPoint
   }
 }`;
+
+export const getUserById = `query GetUserByLoginInfo {
+  getUserByLoginInfo {
+    _id
+    email
+    password
+    fullName
+    role
+    totalPoint
+  }
+}`;

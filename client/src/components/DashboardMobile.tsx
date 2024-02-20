@@ -36,20 +36,14 @@ export default function DashboardMobile() {
             <ul className="">
               <li className="flex flex-col gap-2">
                 <Link
-                  href={"/"}
+                  href={"/admin"}
                   onClick={() => setOptions(false)}
                   className="text-xl px-3 pb-2 pt-2"
                 >
                   Home
                 </Link>
-                <Link href={"/"} className="text-xl px-3 pb-2">
-                  Order
-                </Link>
-                <Link href={"/"} className="text-xl px-3 pb-2">
-                  Statistics
-                </Link>
-                <Link href={"/scan"} className="text-xl px-3 pb-2">
-                  QR Code
+                <Link href={"/admin/scan"} className="text-xl px-3 pb-2">
+                  Scan QR
                 </Link>
                 <form
                   action={() => handleAdminLogout()}

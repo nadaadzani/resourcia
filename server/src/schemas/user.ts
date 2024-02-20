@@ -3,6 +3,7 @@ import {
   TokenPayload,
   addPoin,
   adminLogin,
+  getUserById,
   login,
   register,
 } from "../models/user.js";
@@ -61,6 +62,17 @@ type loginInput = {
 };
 
 export const userResolvers = {
+  Query: {
+    getUserByLoginInfo: async (
+      _parent: unknown,
+      _args: unknown,
+      contextValue: { authentication: () => Promise<TokenPayload> }
+    ) => {
+      const { userId } = await contextValue.authentication();
+      const user = await getUserById(userId as string);
+      return user;
+    },
+  },
   Mutation: {
     register: async (_parent: unknown, args: inputRegister) => {
       const payload = args.inputRegister;
