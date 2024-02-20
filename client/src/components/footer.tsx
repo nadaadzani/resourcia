@@ -97,7 +97,7 @@ const Footer = () => {
                 <li key={idx}>
                   <a
                     // href={el.href}
-                    className="hover:underline  first-letter:uppercase lowercase "
+                    className="hover:underline  first-letter:uppercase lowercase cursor-pointer"
                   >
                     {el.name}
                   </a>
@@ -107,11 +107,11 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      <div className="mt-8 py-6 border-t items-center justify-between sm:flex">
+      <div className="mt-8 py-6 border-t items-center justify-between max-[440px]:flex max-[440px]:justify-center">
         <div className="mt-4 text-lg sm:mt-0">
           &copy; 2024 Resourcia All rights reserved.
         </div>
-        <div className="mt-6 sm:mt-0">
+        {/* <div className="mt-6 sm:mt-0">
           <ul className="flex items-center space-x-4">
             <li className="w-10 h-10 border rounded-full flex items-center justify-center">
               <a>
@@ -159,7 +159,7 @@ const Footer = () => {
               <div className="text-white text-3xl"></div>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
