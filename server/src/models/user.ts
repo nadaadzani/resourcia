@@ -80,7 +80,95 @@ export const login = async (payload: inputLogin) => {
 
 export const getUserById = async (id: string) => {
   const userCollection = getCollection();
-  const user = await userCollection.findOne({ _id: new ObjectId(id) });
+  const user = await userCollection.findOne(
+    { _id: new ObjectId(id) },
+    { projection: { password: 0 } }
+  );
   if (!user) throw new GraphQLError("User Not Found");
   return user;
+};
+
+export const adminLogin = async (payload: inputLogin) => {
+  const userCollection = getCollection();
+  const { email, password } = payload;
+
+  const user = await userCollection.findOne({
+    email,
+  });
+
+  if (!user) {
+    throw new GraphQLError("Invalid email or password");
+  }
+
+  if (user.role !== "Admin") throw new GraphQLError("Forbidden");
+
+  const validUser = comparePassword(password, user.password);
+
+  if (!validUser) {
+    throw new GraphQLError("Invalid email or password");
+  }
+
+  const token = signToken({
+    userId: user._id,
+    userEmail: user.email,
+    role: user.role,
+  });
+
+  return { _id: user._id, token };
+};
+
+export const addPoin = async (poin: number, userId: string) => {
+  const userCollection = getCollection();
+
+  const user = await userCollection.findOne({
+    _id: new ObjectId(userId),
+  });
+
+  if (!user) {
+    throw new GraphQLError("Invalid email or password");
+  }
+  let totalPoint = user.totalPoint + poin;
+
+  await userCollection.updateOne(
+    { _id: new ObjectId(userId) },
+    {
+      $set: { totalPoint },
+    }
+  );
+
+  const userFound = await userCollection.findOne(
+    {
+      _id: new ObjectId(userId),
+    },
+    { projection: { password: 0 } }
+  );
+  return userFound;
+};
+
+export const decreasePoin = async (poin: number, userId: string) => {
+  const userCollection = getCollection();
+
+  const user = await userCollection.findOne({
+    _id: new ObjectId(userId),
+  });
+
+  if (!user) {
+    throw new GraphQLError("Invalid email or password");
+  }
+  let totalPoint = user.totalPoint - poin;
+
+  await userCollection.updateOne(
+    { _id: new ObjectId(userId) },
+    {
+      $set: { totalPoint },
+    }
+  );
+
+  const userFound = await userCollection.findOne(
+    {
+      _id: new ObjectId(userId),
+    },
+    { projection: { password: 0 } }
+  );
+  return userFound;
 };

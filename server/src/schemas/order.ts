@@ -8,44 +8,64 @@ import {
 import { TokenPayload } from "../models/user.js";
 
 export const productOrderTypeDefs = `#graphql
+    type Product {
+        _id: ID
+        name: String!
+        price: Int!
+        description: String!
+        category: String 
+        stock: Int
+        imageUrl: String
+    }
+
     type ProductOrder {
         _id:ID
         userId:String
         productId:String
-        lat:String
-        lng:String
+        province:String
+        address:String
+        status:String
+        createdAt:String
+    }
+
+    type GetProduct {
+        _id:ID
+        userId:String
+        productId:String
+        province:String
+        product:Product
+        address:String
         status:String
         createdAt:String
     }
 
     type Query {
-        getProductOrder(status:String): [ProductOrder]
-        getProductOrderById(id: String!): ProductOrder
+        getProductOrder: [GetProduct]
+        getProductOrderById(id: String!): GetProduct
     }
 
     type Mutation {
-        createProductOrder(productId:String!, lat:String!, lng:String!): ProductOrder
+        createProductOrder(productId:String!, province:String!, address:String!): ProductOrder
         changeStatusProductOrder(productOrderId:String!):ProductOrder
     }
 `;
 
 export type ProductOrderInput = {
   productId: string;
-  lat: string;
-  lng: string;
+  province: string;
+  address: string;
 };
 
 export const productOrderResolvers = {
   Query: {
     getProductOrder: async (
       _parent: unknown,
-      args: { status: string | undefined },
+      _args: unknown,
       contextValue: { authentication: () => Promise<TokenPayload> }
     ) => {
       const { userId } = await contextValue.authentication();
-      const { status } = args;
 
-      const data = await getAllProductOrder(userId as string, status);
+      const data = await getAllProductOrder(userId as string);
       return data;
     },
     getProductOrderById: async (_parent: unknown, args: { id: string }) => {
@@ -61,12 +81,12 @@ export const productOrderResolvers = {
       contextValue: { authentication: () => Promise<TokenPayload> }
     ) => {
       const { userId } = await contextValue.authentication();
-      const { productId, lat, lng } = args;
+      const { productId, province, address } = args;
       const productOrder = await addProductOrder(
         productId,
         userId as string,
-        lat,
-        lng
+        province,
+        address
       );
       return productOrder;
     },

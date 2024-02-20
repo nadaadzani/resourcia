@@ -1,13 +1,12 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-import Link from "../../../node_modules/next/link";
+import Link from "next/link";
 import { IoMdExit, IoMdLogIn } from "react-icons/io";
 import { GrShop } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
-import { RiLoginBoxFill } from "react-icons/ri";
-
-// import { actionLogout } from "./actionLogout";
+import { handleLogout } from "./actionLogout";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,44 +36,57 @@ const Nav = () => {
             scrolled
               ? "bg-white text-gray-900  border border-gray-800 border-1"
               : "bg-transparent text-black"
-          }`}>
+          }`}
+        >
           <div className="w-[30%] ">
             <Link
               href={"/"}
-              className="text-4xl font-extrabold text-[#211C6A] tracking-tighter">
+              className="text-4xl font-extrabold text-[#211C6A] tracking-tighter"
+            >
               Resourcia^
             </Link>
           </div>
-          <div className="w-[40%] max-md:hidden  ">
-            <ul className="flex font-[300] tracking-wide first-letter:uppercase text-lg   justify-between px-20">
-              <Link className="first-letter:uppercase" href={"/"}>
+          <div className="w-[40%] max-md:hidden">
+            <ul className="flex font-[300] tracking-wide first-letter:uppercase text-lg justify-between px-20">
+              <Link
+                className="first-letter:uppercase hover:underline transition-all duration-200 hover:ease-in-out"
+                href={"/"}
+              >
                 home
               </Link>
-              <Link href={"/products"}>Product</Link>
-              <Link href={"/donate"}>Donate</Link>
+              <Link
+                href={"/donate"}
+                className="hover:underline transition-all duration-200 hover:ease-in-out"
+              >
+                Donate
+              </Link>
+              <Link
+                href={"/products"}
+                className="hover:underline transition-all duration-200 hover:ease-in-out"
+              >
+                Redeem
+              </Link>
             </ul>
           </div>
           <div className=" w-[30%] max-md:hidden ">
             <div className="flex gap-9 text-end items-end justify-end px-20 ">
               <Link
-                href={"/wishlist"}
-                className="text-3xl flex  font-[300] justify-center items-center">
+                href={"/order"}
+                className="text-3xl flex  font-[300] justify-center items-center"
+              >
                 <GrShop />
               </Link>
               <Link
-                href={"/register"}
-                className="text-3xl flex  font-[300] justify-center items-center">
+                href={"/login"}
+                className="text-3xl flex  font-[300] justify-center items-center"
+              >
                 <FaUser />
               </Link>
-              <Link
-                href={"/login"}
-                className="text-3xl flex  font-[300] justify-center items-center">
-                <RiLoginBoxFill />
-              </Link>
-              <form>
+              <form action={handleLogout}>
                 <button
                   className="text-3xl flex  font-[300] justify-center items-center"
-                  type="submit">
+                  type="submit"
+                >
                   <IoMdExit />
                 </button>
               </form>

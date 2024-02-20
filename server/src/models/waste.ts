@@ -67,10 +67,13 @@ export const getPickupOrderById = async (id: string) => {
 
 export const changeStatusPickupOrder = async (pickupOrderId: string) => {
   const collection = getCollection();
+
   await collection.updateOne(
     { _id: new ObjectId(pickupOrderId) },
     { $set: { status: "Complete" } }
   );
+
   const data = await collection.findOne({ _id: new ObjectId(pickupOrderId) });
+
   return data;
 };

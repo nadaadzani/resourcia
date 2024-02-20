@@ -1,7 +1,14 @@
-import { getDatabase } from "../config/mongoConnection";
-import { login, register } from "../models/user.js";
+import { GraphQLError } from "graphql";
+import {
+  TokenPayload,
+  addPoin,
+  adminLogin,
+  getUserById,
+  login,
+  register,
+} from "../models/user.js";
 
-export const typeDefs = `#graphql
+export const userTypeDefs = `#graphql
     type User {
         _id: ID
         email: String!
@@ -34,6 +41,8 @@ export const typeDefs = `#graphql
     type Mutation {
         register(inputRegister: RegisterInput!): User
         login(inputLogin: LoginInput!): LoginResponse
+        adminLogin(inputLogin: LoginInput!): LoginResponse
+        addPoin(poin:Int, userId:String):User
     }
 `;
 
@@ -52,9 +61,17 @@ type loginInput = {
   };
 };
 
-export const resolvers = {
+export const userResolvers = {
   Query: {
-    getUserByLoginInfo: async (_parent: unknown, args: unknown) => {},
+    getUserByLoginInfo: async (
+      _parent: unknown,
+      _args: unknown,
+      contextValue: { authentication: () => Promise<TokenPayload> }
+    ) => {
+      const { userId } = await contextValue.authentication();
+      const user = await getUserById(userId as string);
+      return user;
+    },
   },
   Mutation: {
     register: async (_parent: unknown, args: inputRegister) => {
@@ -67,6 +84,22 @@ export const resolvers = {
       const payload = args.inputLogin;
       const loggedUser = await login(payload);
       return loggedUser;
+    },
+    adminLogin: async (_parent: unknown, args: loginInput) => {
+      const payload = args.inputLogin;
+      const loggedUser = await adminLogin(payload);
+      return loggedUser;
+    },
+    addPoin: async (
+      _parent: unknown,
+      args: { poin: number; userId: string },
+      contextValue: { authentication: () => Promise<TokenPayload> }
+    ) => {
+      const { poin, userId } = args;
+      const { role } = await contextValue.authentication();
+      if (role !== "Admin") throw new GraphQLError("Forbidden");
+      const user = await addPoin(poin, userId);
+      return user;
     },
   },
 };

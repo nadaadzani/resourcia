@@ -7,24 +7,26 @@ const getCollection = () => {
   return postCollection;
 };
 
-export const getProducts = async (search: string, offset: number) => {
+export const getProducts = async (search: string, filter: string) => {
   const postCollection = getCollection();
   let products: unknown;
 
+  let body: { name?: {}; category?: string } = {};
+  if (search) body.name = { $regex: search, $options: "i" };
+  if (filter) body.category = filter;
+  products = await postCollection.find(body).toArray();
   // No Search
-  if (!search || search === "") {
-    products = await postCollection.find({}).limit(8).skip(offset).toArray();
-    return products;
-  }
+  // if (!search || search === "") {
+  //   products = await postCollection.find({}).toArray();
+  //   return products;
+  // }
 
   // With Search
-  products = await postCollection
-    .find({
-      name: { $regex: search, $options: "i" },
-    })
-    .limit(8)
-    .skip(offset)
-    .toArray();
+  // products = await postCollection
+  //   .find({
+  //     name: { $regex: search, $options: "i" },
+  //   })
+  //   .toArray();
 
   return products;
 };

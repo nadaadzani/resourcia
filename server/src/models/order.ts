@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { getDatabase } from "../config/mongoConnection.js";
 import { GraphQLError } from "graphql";
 import { getProductById } from "./product.js";
-import { getUserById } from "./user.js";
+import { decreasePoin, getUserById } from "./user.js";
 
 const getCollection = () => {
   const db = getDatabase();
@@ -13,8 +13,8 @@ const getCollection = () => {
 export const addProductOrder = async (
   productId: string,
   userId: string,
-  lat: string,
-  lng: string
+  province: string,
+  address: string
 ) => {
   const collection = getCollection();
 
@@ -23,42 +23,81 @@ export const addProductOrder = async (
   const userFound = await getUserById(userId);
   if (!userFound) throw new GraphQLError("User Not Found");
 
+  if (userFound.totalPoint <= productFound.price)
+    throw new GraphQLError(`You don't have enough points`);
+
   const response = await collection.insertOne({
     userId: new ObjectId(userId),
     productId: new ObjectId(productId),
-    lat,
-    lng,
+    province,
+    address,
     status: "Incomplete",
     createdAt: new Date(),
   });
+
+  await decreasePoin(productFound.price, userId);
 
   const order = await collection.findOne({ _id: response.insertedId });
   return order;
 };
 
-export const getAllProductOrder = async (
-  userId: string,
-  status?: string | undefined
-) => {
+export const getAllProductOrder = async (userId: string) => {
   const collection = getCollection();
 
   const userFound = await getUserById(userId);
 
-  if (userFound.role !== "Admin") {
-    let body: { status?: string; userId: ObjectId } = {
-      userId: new ObjectId(userId),
-    };
-    if (status) body.status = status;
+  if (userFound.role === "Admin") {
+    const aggAdmin = [
+      {
+        $lookup: {
+          from: "products",
+          localField: "productId",
+          foreignField: "_id",
+          as: "product",
+        },
+      },
+      {
+        $unwind: {
+          path: "$product",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+    ];
 
-    const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
+    const data = await collection
+      .aggregate(aggAdmin)
+      .sort({ createdAt: -1 })
+      .toArray();
 
     return data;
   }
 
-  let body: { status?: string } = {};
-  if (status) body.status = status;
+  const agg = [
+    {
+      $match: {
+        userId: new ObjectId(`${userId}`),
+      },
+    },
+    {
+      $lookup: {
+        from: "products",
+        localField: "productId",
+        foreignField: "_id",
+        as: "product",
+      },
+    },
+    {
+      $unwind: {
+        path: "$product",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+  ];
 
-  const data = await collection.find(body).sort({ createdAt: -1 }).toArray();
+  const data = await collection
+    .aggregate(agg)
+    .sort({ createdAt: -1 })
+    .toArray();
 
   return data;
 };
