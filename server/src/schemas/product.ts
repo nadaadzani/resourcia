@@ -6,7 +6,7 @@ export const productTypeDefs = `#graphql
         name: String!
         price: Int!
         description: String!
-        category: String # Dijadiin Array (?)
+        category: String
         stock: Int
         imageUrl: String
     }
@@ -20,14 +20,6 @@ export const productTypeDefs = `#graphql
         createProduct: Product
     }
 `;
-
-type Product = {
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  stock: number;
-};
 
 type UserInput = {
   search?: string;
@@ -46,8 +38,5 @@ export const productResolvers = {
       const product = await getProductById(id);
       return product;
     },
-  },
-  Mutation: {
-    createProduct: async (_parent: unknown, args) => {},
   },
 };

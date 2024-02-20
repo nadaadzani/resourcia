@@ -53,9 +53,6 @@ type loginInput = {
 };
 
 export const userResolvers = {
-  Query: {
-    getUserByLoginInfo: async (_parent: unknown, args: unknown) => {},
-  },
   Mutation: {
     register: async (_parent: unknown, args: inputRegister) => {
       const payload = args.inputRegister;

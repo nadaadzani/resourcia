@@ -34,6 +34,9 @@ const Page = () => {
     };
 
     scanner.render(success, error);
+    return () => {
+      scanner.clear();
+    };
   }, []);
 
   return (

@@ -22,7 +22,7 @@ export default function TableData({
       {order.map((ord, idx) => {
         return (
           <>
-            <tr className="h-12 min-[320px]:text-sm">
+            <tr className="h-12 min-[320px]:text-sm" key={idx}>
               <td className=" overflow-auto px-4">
                 <span>{ord._id}</span>
               </td>
