@@ -3,17 +3,35 @@ import { fetchProducts } from "./action";
 import Search from "./Search";
 import { FilterComponent } from "@/components/FilterComponent";
 import { FilterMobileComponent } from "@/components/FilterMobileComponent";
+import { cookies } from "next/headers";
+import { getUserById } from "@/utils/queries";
 
 const page = async ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
+  const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
   const filter =
     typeof searchParams.filter === "string" ? searchParams.filter : undefined;
   const products = await fetchProducts({ search, filter });
+  const token = cookies().get("token");
+
+  let user;
+  if (token) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: JSON.stringify({ query: getUserById }),
+    });
+    const responseJson = await response.json();
+    user = responseJson.data.getUserByLoginInfo as { totalPoint: number };
+  }
   return (
     <main className="min-h-screen max-md:px-5 pt-24 px-20">
       <div
@@ -34,7 +52,12 @@ const page = async ({
         <div className="w-[75%] max-md:w-full ">
           <FilterMobileComponent />
           <Search />
-
+          {token && user && (
+            <p className=" text-center my-4 text-2xl">
+              Your Point :{" "}
+              <span className=" text-green-600">{user.totalPoint}</span>
+            </p>
+          )}
           {products.length === 0 && (
             <div className="flex justify-center h-full items-center ">
               <h1 className="text-3xl   text-gray-600 text-center font-semibold">

@@ -80,7 +80,10 @@ export const login = async (payload: inputLogin) => {
 
 export const getUserById = async (id: string) => {
   const userCollection = getCollection();
-  const user = await userCollection.findOne({ _id: new ObjectId(id) });
+  const user = await userCollection.findOne(
+    { _id: new ObjectId(id) },
+    { projection: { password: 0 } }
+  );
   if (!user) throw new GraphQLError("User Not Found");
   return user;
 };

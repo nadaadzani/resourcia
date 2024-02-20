@@ -23,7 +23,7 @@ export const addProductOrder = async (
   const userFound = await getUserById(userId);
   if (!userFound) throw new GraphQLError("User Not Found");
 
-  if (!userFound.totalPoint <= productFound.price)
+  if (userFound.totalPoint <= productFound.price)
     throw new GraphQLError(`You don't have enough points`);
 
   const response = await collection.insertOne({

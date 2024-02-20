@@ -40,24 +40,28 @@ const NavMobile = () => {
     <nav className="relative">
       <div
         onClick={() => setIsOpen(true)}
-        className="cursor-pointer text-black">
+        className="cursor-pointer text-black"
+      >
         <GiHamburgerMenu className="w-8 h-8" />
       </div>
       <motion.div
         variants={circleVariants}
         initial="hidden"
         animate={isOpen ? "visible" : "hidden "}
-        className="w-4 h-4 rounded-full bg-[#34CCFF] fixed top-0 right-0"></motion.div>
+        className="w-4 h-4 rounded-full bg-[#34CCFF] fixed top-0 right-0"
+      ></motion.div>
       <motion.ul
         variants={ulVariants}
         initial="hidden"
         animate={isOpen ? "visible" : ""}
         className={`${
           isOpen ? "right-0" : "-right-full"
-        } fixed top-0 bottom-0 w-full flex flex-col justify-center items-center transition-all duration-300 overflow-hidden`}>
+        } fixed top-0 bottom-0 w-full flex flex-col justify-center items-center transition-all duration-300 overflow-hidden`}
+      >
         <div
           onClick={() => setIsOpen(false)}
-          className="cursor-pointer absolute top-8 text-2xl right-8">
+          className="cursor-pointer absolute top-8 text-2xl right-8"
+        >
           <IoMdClose className="w-8 text-white  h-8" />
         </div>
 
@@ -65,35 +69,33 @@ const NavMobile = () => {
           <Link
             href={`/`}
             onClick={() => setIsOpen(false)}
-            className="text-4xl cursor-pointer text-white font-semibold">
+            className="text-4xl cursor-pointer text-white font-semibold"
+          >
             Home
           </Link>
           <Link
             href={`/products`}
             onClick={() => setIsOpen(false)}
-            className="text-4xl cursor-pointer text-white font-semibold">
-            Product
+            className="text-4xl cursor-pointer text-white font-semibold"
+          >
+            Redeem
           </Link>
           <Link
             href={`/donate`}
             onClick={() => setIsOpen(false)}
-            className="text-4xl cursor-pointer text-white font-semibold">
+            className="text-4xl cursor-pointer text-white font-semibold"
+          >
             Donate
-          </Link>
-          <Link
-            href={`/About`}
-            onClick={() => setIsOpen(false)}
-            className="text-4xl cursor-pointer text-white font-semibold">
-            About
           </Link>
           <Link
             href={`/login`}
             onClick={() => setIsOpen(false)}
-            className="text-4xl cursor-pointer text-white font-semibold">
+            className="text-4xl cursor-pointer text-white font-semibold"
+          >
             Login
           </Link>
           <form action={handleLogout}>
-            <button onClick={()=> setIsOpen(false)} type="submit" >
+            <button onClick={() => setIsOpen(false)} type="submit">
               <p className="text-4xl cursor-pointer text-white font-semibold ">
                 Logout
               </p>
