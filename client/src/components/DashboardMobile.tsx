@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { handleAdminLogout } from "./actionLogout";
 
 export default function DashboardMobile() {
   const [options, setOptions] = useState(false);
@@ -50,7 +51,10 @@ export default function DashboardMobile() {
                 <Link href={"/scan"} className="text-xl px-3 pb-2">
                   QR Code
                 </Link>
-                <form action="" className="text-xl px-3 pb-2">
+                <form
+                  action={() => handleAdminLogout()}
+                  className="text-xl px-3 pb-2"
+                >
                   <button type="submit">Log out</button>
                 </form>
               </li>

@@ -11,3 +11,11 @@ export const handleLogout = async () => {
   }
   redirect("/login?error=You haven't login yet");
 };
+
+export const handleAdminLogout = async () => {
+  if (cookies().get("tokenAdmin")) {
+    cookies().delete("tokenAdmin");
+    redirect("/admin/login?success=Success Logout");
+  }
+  redirect("/admin/login?error=You haven't login yet");
+};

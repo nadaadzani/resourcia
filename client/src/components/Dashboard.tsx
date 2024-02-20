@@ -12,6 +12,7 @@ import { useState } from "react";
 import { BiLogIn } from "react-icons/bi";
 import Link from "next/link";
 import DashboardMobile from "./DashboardMobile";
+import { handleAdminLogout } from "./actionLogout";
 
 export default function Dashboard() {
   const [login, setLogin] = useState(true);
@@ -60,9 +61,12 @@ export default function Dashboard() {
             <FaRegBell size={24} />
             <p className="dm-sans font-semibold text-lg ml-4">Notifications</p>
           </div>
-          <div className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide">
+          <div
+            className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide cursor-pointer"
+            onClick={() => handleAdminLogout()}
+          >
             <IoIosSettings size={24} />
-            <p className="dm-sans font-semibold text-lg ml-4">Settings</p>
+            <p className="dm-sans font-semibold text-lg ml-4">Logout</p>
           </div>
           <div className="border-t border-gray-200 mb-2 mt-4"></div>
           {login ? (

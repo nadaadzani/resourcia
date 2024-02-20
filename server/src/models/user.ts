@@ -84,3 +84,32 @@ export const getUserById = async (id: string) => {
   if (!user) throw new GraphQLError("User Not Found");
   return user;
 };
+
+export const adminLogin = async (payload: inputLogin) => {
+  const userCollection = getCollection();
+  const { email, password } = payload;
+
+  const user = await userCollection.findOne({
+    email,
+  });
+
+  if (!user) {
+    throw new GraphQLError("Invalid email or password");
+  }
+
+  if (user.role !== "Admin") throw new GraphQLError("Forbidden");
+
+  const validUser = comparePassword(password, user.password);
+
+  if (!validUser) {
+    throw new GraphQLError("Invalid email or password");
+  }
+
+  const token = signToken({
+    userId: user._id,
+    userEmail: user.email,
+    role: user.role,
+  });
+
+  return { _id: user._id, token };
+};

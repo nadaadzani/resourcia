@@ -1,21 +1,21 @@
-import { Dispatch, SetStateAction } from "react";
+import { handleLoginAdmin } from "./action";
 
-const Page = ({
-  setLogin,
-}: {
-  setLogin: () => Dispatch<SetStateAction<boolean>>;
-}) => {
+const Page = () => {
   return (
     <>
       <section className="w-full h-screen bg-rose-600 flex items-center justify-center">
         <div className="w-96 h-96 bg-white rounded-2xl flex flex-col items-center">
           <h1 className="dm-sans font-bold text-3xl mt-4">Resourcia^</h1>
-          <form className="flex flex-col mt-8 gap-4 items-center" action="">
+          <form
+            className="flex flex-col mt-8 gap-4 items-center"
+            action={handleLoginAdmin}
+          >
             <div className="flex flex-col w-80 gap-1">
               <label htmlFor="">Email</label>
               <input
                 type="text"
                 placeholder="your email.."
+                name="email"
                 className="pl-2 h-8 rounded-lg border border-gray-300"
               />
             </div>
@@ -24,6 +24,7 @@ const Page = ({
               <input
                 type="password"
                 placeholder="your password.."
+                name="password"
                 className="pl-2 h-8 rounded-lg border border-gray-300"
               />
             </div>

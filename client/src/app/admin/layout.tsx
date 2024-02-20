@@ -1,4 +1,5 @@
 import AdminPage from "@/components/AdminPage";
+import { ClientFlashParams } from "@/components/ClientFlashParams";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,5 +12,10 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <>
+      <ClientFlashParams />
+      {children}
+    </>
+  );
 }

@@ -1,4 +1,4 @@
-import { login, register } from "../models/user.js";
+import { adminLogin, login, register } from "../models/user.js";
 
 export const userTypeDefs = `#graphql
     type User {
@@ -33,6 +33,7 @@ export const userTypeDefs = `#graphql
     type Mutation {
         register(inputRegister: RegisterInput!): User
         login(inputLogin: LoginInput!): LoginResponse
+        adminLogin(inputLogin: LoginInput!): LoginResponse
     }
 `;
 
@@ -65,6 +66,11 @@ export const userResolvers = {
     login: async (_parent: unknown, args: loginInput) => {
       const payload = args.inputLogin;
       const loggedUser = await login(payload);
+      return loggedUser;
+    },
+    adminLogin: async (_parent: unknown, args: loginInput) => {
+      const payload = args.inputLogin;
+      const loggedUser = await adminLogin(payload);
       return loggedUser;
     },
   },
