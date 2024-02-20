@@ -86,3 +86,26 @@ export const createProductOrder = `mutation CreateProductOrder($productId: Strin
       createdAt
     }
   }`;
+
+export const changeProductOrderStatus = `mutation ChangeStatusProductOrder($productOrderId: String!) {
+    changeStatusProductOrder(productOrderId: $productOrderId) {
+      _id
+      userId
+      productId
+      province
+      address
+      status
+      createdAt
+    }
+  }`;
+
+export const changePickupOrderStatus = `mutation ChangeStatusPickupOrder($pickupOrderId: String!) {
+  changeStatusPickupOrder(pickupOrderId: $pickupOrderId) {
+    _id
+    userId
+    lat
+    lng
+    status
+    createdAt
+  }
+}`;

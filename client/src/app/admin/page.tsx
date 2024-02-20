@@ -1,12 +1,88 @@
 import { AdminServerProtected } from "@/components/AdminServerProtected";
 import Dashboard from "@/components/Dashboard";
+import PickupTableData from "@/components/PickupTableData";
 import TableData from "@/components/TableData";
+import { getPickupOrder, getProductsOrder } from "@/utils/queries";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { BiStats } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 
-export default function Home() {
+const url = process.env.NEXT_PUBLIC_API_URL as string;
+
+export default async function Home() {
+  const token = cookies().get("tokenAdmin");
+  if (!token) redirect("/login?error=Please Login First");
+
+  //PRODUCT ORDER
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token.value}`,
+    },
+    body: JSON.stringify({
+      query: getProductsOrder,
+    }),
+  });
+  const responseJson = await response.json();
+  const productOrder = responseJson.data.getProductOrder as {
+    _id: string;
+    userId: string;
+    productId: string;
+    product: { name: string };
+    province: string;
+    address: string;
+    status: string;
+    createdAt: string;
+  }[];
+  // PRODUCT ORDER END
+
+  // PICKUP ORDER
+  const responsePickup = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token.value}`,
+    },
+    body: JSON.stringify({
+      query: getPickupOrder,
+    }),
+  });
+
+  const responsePickupJson = await responsePickup.json();
+
+  const orderPickup = responsePickupJson.data.getPickupOrder as {
+    _id: string;
+    lat: string;
+    lng: string;
+    status: string;
+    createdAt: string;
+  }[];
+  // PICKUP ORDER END
+
+  let processed = 0;
+  let completed = 0;
+  let incomplete = 0;
+
+  productOrder.forEach((el) => {
+    processed++;
+    if (el.status === "Complete") {
+      completed++;
+    } else {
+      incomplete++;
+    }
+  });
+  orderPickup.forEach((el) => {
+    processed++;
+    if (el.status === "Complete") {
+      completed++;
+    } else {
+      incomplete++;
+    }
+  });
   return (
     <>
       <AdminServerProtected>
@@ -43,7 +119,7 @@ export default function Home() {
                     <BiStats size={46} />
                   </div>
                   <div className="ml-2">
-                    <p className="font-bold text-xl h-6">2749</p>
+                    <p className="font-bold text-xl h-6">{processed}</p>
                     <h5 className="text-gray-500">Processed orders</h5>
                   </div>
                 </div>
@@ -52,7 +128,7 @@ export default function Home() {
                     <FaCheck size={36} />
                   </div>
                   <div className="ml-2">
-                    <p className="font-bold text-xl h-6">2310</p>
+                    <p className="font-bold text-xl h-6">{completed}</p>
                     <h5 className="text-gray-500">Completed orders</h5>
                   </div>
                 </div>
@@ -61,7 +137,7 @@ export default function Home() {
                     <ImCross size={28} />
                   </div>
                   <div className="ml-2">
-                    <p className="font-bold text-xl h-6">439</p>
+                    <p className="font-bold text-xl h-6">{incomplete}</p>
                     <h5 className="text-gray-500">Incomplete orders</h5>
                   </div>
                 </div>
@@ -78,13 +154,13 @@ export default function Home() {
                     <thead className="border-b-2 border-gray-300 rounded-xl border-spacing-8 ">
                       <tr className="h-12 w-24 lg:w-full">
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          Order
+                          Order ID
                         </th>
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          User
+                          Province
                         </th>
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          Amount
+                          Address
                         </th>
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
                           Created
@@ -95,7 +171,7 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      <TableData />
+                      <TableData order={productOrder} />
                     </tbody>
                   </table>
                 </div>
@@ -107,13 +183,10 @@ export default function Home() {
                     <thead className="border-b-2 border-gray-300 rounded-xl border-spacing-8">
                       <tr className="h-12 w-24 lg:w-full">
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          Order
+                          Order ID
                         </th>
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          User
-                        </th>
-                        <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
-                          Amount
+                          Location
                         </th>
                         <th className="lg:px-6 min-[320px]:px-2 min-[320px]:text-sm">
                           Created
@@ -124,7 +197,7 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      <TableData />
+                      <PickupTableData order={orderPickup} />
                     </tbody>
                   </table>
                 </div>

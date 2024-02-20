@@ -1,18 +1,17 @@
 "use client";
+
+import Link from "next/link";
 import { FaCheck } from "react-icons/fa";
 import { FaExclamation } from "react-icons/fa";
-import { handleChangeProductOrderStatus } from "./action";
+import { handleChangePickupOrderStatus } from "./action";
 
-export default function TableData({
+export default function PickupTableData({
   order,
 }: {
   order: {
     _id: string;
-    userId: string;
-    productId: string;
-    product: { name: string };
-    province: string;
-    address: string;
+    lat: string;
+    lng: string;
     status: string;
     createdAt: string;
   }[];
@@ -26,8 +25,13 @@ export default function TableData({
               <td className=" overflow-auto px-4">
                 <span>{ord._id}</span>
               </td>
-              <td>{ord.province}</td>
-              <td>{ord.address}</td>
+              <td>
+                <Link
+                  href={`https://www.google.com/maps/search/?api=1&query=${ord.lat},${ord.lng}`}
+                >
+                  Click Here
+                </Link>
+              </td>
               <td>{new Date(Number(ord.createdAt)).toDateString()}</td>
               <td>
                 {ord.status === "Complete" ? (
@@ -41,7 +45,7 @@ export default function TableData({
                   <span className="flex items-center gap-2 p-2 bg-yellow-300 w-28 h-8 rounded-2xl mx-auto text-sm min-[320px]:w-10 min-[320px]:bg-white min-[320px]:h-6 min-[320px]:text-[10px]">
                     <div
                       className="p-1 bg-yellow-600 rounded-[50%] text-white cursor-pointer"
-                      onClick={() => handleChangeProductOrderStatus(ord._id)}
+                      onClick={() => handleChangePickupOrderStatus(ord._id)}
                     >
                       <FaExclamation size={12} />
                     </div>

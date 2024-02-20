@@ -1,5 +1,10 @@
 "use server";
 
+import {
+  changePickupOrderStatus,
+  changeProductOrderStatus,
+} from "@/utils/queries";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -36,4 +41,44 @@ export const addPickupOrder = async (
     }),
   });
   redirect("/");
+};
+
+export const handleChangeProductOrderStatus = async (id: string) => {
+  const token = cookies().get("tokenAdmin");
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token?.value}`,
+    },
+    body: JSON.stringify({
+      query: changeProductOrderStatus,
+      variables: {
+        productOrderId: id,
+      },
+    }),
+  });
+  const responseJson = await response.json();
+  console.log(responseJson);
+  revalidatePath("/admin");
+};
+
+export const handleChangePickupOrderStatus = async (id: string) => {
+  const token = cookies().get("tokenAdmin");
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token?.value}`,
+    },
+    body: JSON.stringify({
+      query: changePickupOrderStatus,
+      variables: {
+        pickupOrderId: id,
+      },
+    }),
+  });
+  const responseJson = await response.json();
+  console.log(responseJson);
+  revalidatePath("/admin");
 };
