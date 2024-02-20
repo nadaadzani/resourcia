@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/nav";
-import Footer from "@/components/footer";
-// import ChatBot from "@/components/ChatBot";
-// import AichatBot from "@/components/AichatBot";
-import AIChatButton from "@/components/AIChatButton";
-import { ClientFlashParams } from "@/components/ClientFlashParams";
+import GlobalLayout from "@/components/GlobalLayout";
 
 const DmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -20,15 +15,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={DmSans.className}>
-        <ClientFlashParams />
-        <Nav />
-        {children}
-        <Footer />
-        <AIChatButton />
-      </body>
-    </html>
-  );
+  return <GlobalLayout children={children} DmSans={DmSans} />;
 }
