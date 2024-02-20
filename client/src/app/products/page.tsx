@@ -54,7 +54,7 @@ const page = async ({
           <Search />
           {token && user && (
             <p className=" text-center my-4 text-2xl">
-              Your Point :{" "}
+              Your points :{" "}
               <span className=" text-green-600">{user.totalPoint}</span>
             </p>
           )}
@@ -65,7 +65,7 @@ const page = async ({
               </h1>
             </div>
           )}
-          <div className="grid grid-cols-3 h-full max-md:grid-cols-2 gap-4 pt-4 pb-24">
+          <div className="grid grid-cols-3 h-[90%] max-md:grid-cols-2 gap-4 pt-4 pb-8">
             {products.map((prod, idx) => {
               return <Card key={idx} data={prod} />;
             })}

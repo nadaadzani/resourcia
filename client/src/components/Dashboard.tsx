@@ -37,16 +37,6 @@ export default function Dashboard() {
               Dashboard
             </span>
           </Link>
-          <div className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide">
-            <RiListUnordered size={36} />
-            <span className="dm-sans font-semibold text-lg ml-4">Orders</span>
-          </div>
-          <div className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide">
-            <IoIosStats size={36} />
-            <span className="dm-sans font-semibold text-lg ml-4">
-              Statistics
-            </span>
-          </div>
           <Link
             href={"/admin/scan"}
             className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide"
@@ -57,10 +47,6 @@ export default function Dashboard() {
         </section>
 
         <section className="lg:mt-auto lg:flex lg:flex-col lg:gap-2 min-[320px]:hidden">
-          <div className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide">
-            <FaRegBell size={24} />
-            <p className="dm-sans font-semibold text-lg ml-4">Notifications</p>
-          </div>
           <div
             className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide cursor-pointer"
             onClick={() => handleAdminLogout()}

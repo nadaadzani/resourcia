@@ -47,7 +47,8 @@ const page = () => {
               <div className="pt-4 max-md:justify-center">
                 <button
                   type="submit"
-                  className="text-black w-[30%]   max-md:w-full hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#BEDBFE] border border-black">
+                  className="text-black w-[30%]   max-md:w-full hover:text-white hover:bg-black duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#F1F4F7] border border-black"
+                >
                   Sign Up
                 </button>
               </div>

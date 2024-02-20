@@ -42,7 +42,7 @@ const page = () => {
               <div className=" flex max-md:justify-center max-md:items-center pt-10">
                 <button
                   type="submit"
-                  className="text-black w-[30%] max-md:w-full hover:text-black hover:bg-green-500 duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-green-400 border border-black"
+                  className="text-black w-[30%] max-md:w-full hover:text-white hover:bg-black duration-200 transition-all hover:ease-in-out text-lg font-bold py-3 px-7 rounded-full bg-[#F1F4F7] border border-black"
                 >
                   Login
                 </button>

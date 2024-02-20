@@ -88,7 +88,7 @@ export default async function AdminPage() {
           <h1 className="font-semibold text-2xl min-[320px]:text-xl">
             Welcome, Admin
           </h1>
-          <div className="lg:flex lg:items-center min-[320px]:hidden ">
+          {/* <div className="lg:flex lg:items-center min-[320px]:hidden ">
             Filter:
             <select
               name="date"
@@ -99,7 +99,7 @@ export default async function AdminPage() {
               <option value="mar">March 2024</option>
               <option value="apr">April 2024</option>
             </select>
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full min-h-screen bg-gray-200 lg:mt-8 min-[320px]:mt-4">

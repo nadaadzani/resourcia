@@ -111,7 +111,7 @@ const Maps = () => {
               setCenter={setCenter}
             />
             <button
-              className="my-4 w-full text-lg transition-all duration-200 hover:text-black hover:bg-[#1DE592] hover:border-black h-[50px] bg-black rounded-2xl text-white"
+              className="my-4 w-[90%] text-lg transition-all duration-200 hover:text-black hover:bg-[#1DE592] hover:border-black h-[50px] bg-black rounded-2xl text-white"
               onClick={handleSubmit}
               disabled={selected ? false : true}
             >

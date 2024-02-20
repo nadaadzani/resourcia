@@ -22,7 +22,7 @@ const DonatePage = ({ id }: { id: string | undefined }) => {
         <div className="w-[50%] max-md:w-full">
           <Map />
         </div>
-        <div className="w-[45%] md:pt-12 max-md:w-full">
+        <div className="w-[45%]  max-md:w-full">
           <div className="px-10 bg-[#1DE592]   transition-all duration-200 hover:ease-in-out  relative rounded-xl  flex flex-col gap-4 py-10">
             <h3 className="font-semibold tracking-tight text-2xl">Resourcia</h3>
             <p className="text-6xl max-md:text-5xl font-semibold tracking-tight">
@@ -30,7 +30,8 @@ const DonatePage = ({ id }: { id: string | undefined }) => {
             </p>
             <Slider
               className="pt-4 tracking-tighter max-md:text-2xl text-4xl font-semibold"
-              {...settings}>
+              {...settings}
+            >
               <p>Locate nearest collection points on map.</p>
               <p>Drop off food.</p>
               <p>Help fight hunger.</p>
@@ -43,7 +44,8 @@ const DonatePage = ({ id }: { id: string | undefined }) => {
           </div>
         </div>
       </main>
-      <div className="flex max-md:pt-14 justify-center flex-col gap-10 items-center ">
+      <hr className="mx-16 mt-12 border-t-2 max-[440px]:hidden" />
+      <div className="flex max-md:pt-14 mt-12 justify-center flex-col gap-10 items-center ">
         <h1 className="text-7xl max-md:text-center max-md:text-5xl font-bold tracking-tighter">
           Scan to donate
         </h1>

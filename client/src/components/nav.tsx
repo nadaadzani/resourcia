@@ -46,13 +46,26 @@ const Nav = () => {
               Resourcia^
             </Link>
           </div>
-          <div className="w-[40%] max-md:hidden  ">
-            <ul className="flex font-[300] tracking-wide first-letter:uppercase text-lg   justify-between px-20">
-              <Link className="first-letter:uppercase" href={"/"}>
+          <div className="w-[40%] max-md:hidden">
+            <ul className="flex font-[300] tracking-wide first-letter:uppercase text-lg justify-between px-20">
+              <Link
+                className="first-letter:uppercase hover:underline transition-all duration-200 hover:ease-in-out"
+                href={"/"}
+              >
                 home
               </Link>
-              <Link href={"/donate"}>Donate</Link>
-              <Link href={"/products"}>Redeem</Link>
+              <Link
+                href={"/donate"}
+                className="hover:underline transition-all duration-200 hover:ease-in-out"
+              >
+                Donate
+              </Link>
+              <Link
+                href={"/products"}
+                className="hover:underline transition-all duration-200 hover:ease-in-out"
+              >
+                Redeem
+              </Link>
             </ul>
           </div>
           <div className=" w-[30%] max-md:hidden ">

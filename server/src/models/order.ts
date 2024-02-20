@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { getDatabase } from "../config/mongoConnection.js";
 import { GraphQLError } from "graphql";
 import { getProductById } from "./product.js";
-import { getUserById } from "./user.js";
+import { decreasePoin, getUserById } from "./user.js";
 
 const getCollection = () => {
   const db = getDatabase();
@@ -35,6 +35,8 @@ export const addProductOrder = async (
     createdAt: new Date(),
   });
 
+  await decreasePoin(productFound.price, userId);
+
   const order = await collection.findOne({ _id: response.insertedId });
   return order;
 };
@@ -44,7 +46,7 @@ export const getAllProductOrder = async (userId: string) => {
 
   const userFound = await getUserById(userId);
 
-  if (userFound.role !== "Admin") {
+  if (userFound.role === "Admin") {
     const aggAdmin = [
       {
         $lookup: {
@@ -73,7 +75,7 @@ export const getAllProductOrder = async (userId: string) => {
   const agg = [
     {
       $match: {
-        userId: new ObjectId("65ccbfa9ff6026ac00a5e56e"),
+        userId: new ObjectId(`${userId}`),
       },
     },
     {

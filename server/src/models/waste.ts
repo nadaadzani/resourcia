@@ -67,8 +67,6 @@ export const getPickupOrderById = async (id: string) => {
 
 export const changeStatusPickupOrder = async (pickupOrderId: string) => {
   const collection = getCollection();
-  const db = getDatabase();
-  const userCollection = db.collection("users");
 
   await collection.updateOne(
     { _id: new ObjectId(pickupOrderId) },
@@ -76,12 +74,6 @@ export const changeStatusPickupOrder = async (pickupOrderId: string) => {
   );
 
   const data = await collection.findOne({ _id: new ObjectId(pickupOrderId) });
-  console.log(data);
-  await userCollection.updateOne(
-    {
-      _id: data.userId,
-    },
-    { $inc: { totalPoint: 25 } }
-  );
+
   return data;
 };
