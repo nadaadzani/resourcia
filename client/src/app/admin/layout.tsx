@@ -12,10 +12,5 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <ClientFlashParams />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

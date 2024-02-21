@@ -20,7 +20,10 @@ export default function GlobalLayout({
     return (
       <>
         <html lang="en">
-          <body className={DmSans.className}>{children}</body>
+          <body className={DmSans.className}>
+            <ClientFlashParams />
+            {children}
+          </body>
         </html>
       </>
     );
