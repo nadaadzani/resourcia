@@ -30,7 +30,21 @@ export type TokenPayload = {
 export const register = async (payload: inputRegister) => {
   const userCollection = getCollection();
 
-  // Unique email validation here:
+  if (!payload.email || !payload.fullName || !payload.password) {
+    throw new GraphQLError("All fields are required");
+  }
+
+  if (!payload.email.includes("@")) {
+    throw new GraphQLError("Incorrect email format");
+  }
+  // Unique email validation here
+  const foundUser = await userCollection.findOne({
+    email: payload.email,
+  });
+
+  if (foundUser) {
+    throw new GraphQLError("Email must be unique");
+  }
 
   const newUser = await userCollection.insertOne({
     ...payload,

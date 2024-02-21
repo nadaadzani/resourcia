@@ -3,6 +3,7 @@ import { handleLogin } from "./action";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import LoginButton from "@/components/LoginButton";
+import Error from "./error";
 
 const page = () => {
   const token = cookies().get("token");
@@ -14,6 +15,7 @@ const page = () => {
           <div className="flex flex-col  gap-5 max-md:px-6 px-20 pt-[150px] max-md:pt-32 ">
             <p className="text-5xl tracking-tight font-bold">Login</p>
             <p className="font-[300] text-xl">Welcome again to our app!</p>
+            <Error />
             <form
               action={handleLogin}
               className="flex pt-5 flex-col max-md:gap-8 gap-6"
