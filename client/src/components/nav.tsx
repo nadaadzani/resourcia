@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { IoMdExit, IoMdLogIn } from "react-icons/io";
+import { IoMdExit } from "react-icons/io";
 import { GrShop } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
@@ -105,6 +105,18 @@ const Nav = () => {
                   </Link>
                 </>
               )}
+              {/* <form
+                action={() => {
+                  handleLogout(), logout();
+                }}
+              >
+                <button
+                  className="text-3xl flex  font-[300] justify-center items-center"
+                  type="submit"
+                >
+                  <IoMdExit />
+                </button>
+              </form> */}
             </div>
           </div>
           <div className="md:hidden text-black text-4xl">

@@ -44,7 +44,7 @@ const page = async ({
         <div className="py-7 px-10 max-md:py-2 max-md:px-5 flex flex-col max-md:gap-3 gap-6">
           <p className="text-2xl max-md:text-xl font-bold">Products</p>
           <p className="text-5xl max-md:text-3xl font-bold tracking-tighter">
-            Shop and get rewards
+            Claim your rewards!
           </p>
         </div>
       </div>

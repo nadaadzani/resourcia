@@ -1,16 +1,15 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+
 import { MdSpaceDashboard } from "react-icons/md";
-import { RiListUnordered } from "react-icons/ri";
-import { IoIosStats } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
-import { FaRegBell } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { BsQrCodeScan } from "react-icons/bs";
-import { useState } from "react";
-
+import { IoMdExit } from "react-icons/io";
 import { BiLogIn } from "react-icons/bi";
-import Link from "next/link";
+
 import DashboardMobile from "./DashboardMobile";
 import { handleAdminLogout } from "./actionLogout";
 
@@ -22,7 +21,7 @@ export default function Dashboard() {
       <nav className="fixed lg:w-64 lg:min-h-screen lg:bg-rose-700 lg:flex lg:flex-col lg:items-center min-[320px]:w-full min-[320px]:h-24 min-[320px]:bg-rose-700 min-[320px]:flex min-[320px]:flex-row min-[320px]:items-center">
         <div className="flex flex-row sm:items-center">
           {/* Put Logo beside h1 */}
-          <h1 className="dm-sans lg:mt-16 text-white font-bold text-3xl min-[320px]:mt-0 min-[320px]:ml-4">
+          <h1 className="dm-sans lg:mt-16 text-white font-bold text-3xl min-[320px]:mt-0 max-[440px]:ml-4">
             Resourcia^
           </h1>
         </div>
@@ -51,10 +50,10 @@ export default function Dashboard() {
             className="flex flex-row text-white items-center w-52 hover:bg-rose-900 hover:transition rounded-xl p-2 tracking-wide cursor-pointer"
             onClick={() => handleAdminLogout()}
           >
-            <IoIosSettings size={24} />
+            <IoMdExit size={36} />
             <p className="dm-sans font-semibold text-lg ml-4">Logout</p>
           </div>
-          <div className="border-t border-gray-200 mb-2 mt-4"></div>
+          <div className="border-t border-gray-200 mb-2 mt-2" />
           {login ? (
             <>
               <div className="flex flex-row text-white items-center w-52 mb-4 gap-2 hover:bg-rose-900 hover:transition rounded-xl">

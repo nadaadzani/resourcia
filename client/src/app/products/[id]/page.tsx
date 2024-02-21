@@ -60,14 +60,14 @@ const Page = ({ params }: { params: { id: string } }) => {
         <div className="py-7 px-10 max-md:py-2 max-md:px-5 max-md:w-full flex flex-col max-md:gap-3 gap-6">
           <p className="text-2xl max-md:text-xl font-bold">Products</p>
           <p className="text-5xl max-md:text-3xl font-bold tracking-tighter">
-            Get 20% discount for first buy!
+            Claim your rewards!
           </p>
         </div>
       </div>
       <div className=" flex px-20 max-md:px-3 max-md:flex-col pt-5 justify-between">
         <div className="w-[60%] max-md:w-full flex flex-col gap-5">
           <img
-            className="h-full object-contain max-md:w-full w-[80%]"
+            className="h-full object-contain max-md:w-full w-[80%] rounded-xl"
             src={data?.image}
             alt=""
           />
