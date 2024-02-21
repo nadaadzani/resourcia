@@ -7,7 +7,7 @@ import { FcDonate } from "react-icons/fc";
 
 export default function Home() {
   return (
-    <main className=" min-h-screen pt-32 max-md:pt-20 pb-32  ">
+    <main className=" min-h-screen md:h-100vh md:pb-40 pt-32 max-md:pt-20 pb-32  ">
       <div className="flex relative justify-between max-md:flex-col max-md:gap-6 max-md:px-5 px-20">
         <div className="w-[57%] max-md:w-full">
           <div className="px-10 max-md:px-5 bg-[#34CCFF] hover:scale-95 transition-all duration-200 hover:ease-in-out rounded-xl flex flex-col pb-12 max-md:pb-5  gap-10 py-10">

@@ -48,7 +48,7 @@ const Page = async () => {
   const orderPickup = responsePickupJson.data.getPickupOrder;
   return (
     <>
-      <main className="min-h-full pb-20 max-md:flex-col-reverse max-md:px-3 flex px-20 pt-32 justify-between max-[440px]:gap-6 gap-12">
+      <main className="min-h-screen pb-20 max-md:flex-col-reverse max-md:px-3 flex px-20 pt-32 justify-between max-[440px]:gap-6 gap-12">
         <div className=" w-2/3 max-[440px]:w-full">
           <h2 className="text-xl font-bold mb-4">Product Order</h2>
           <div className="overflow-x-auto w-full">
