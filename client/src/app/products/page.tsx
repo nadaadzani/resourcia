@@ -65,7 +65,7 @@ const page = async ({
               </h1>
             </div>
           )}
-          <div className="grid grid-cols-3 h-[90%] max-md:grid-cols-2 gap-4 pt-4 pb-8">
+          <div className="grid grid-cols-3 h-[90%] max-md:grid-cols-1 gap-4 pt-4 pb-8">
             {products.map((prod, idx) => {
               return <Card key={idx} data={prod} />;
             })}
