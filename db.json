@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Pupuk Organik",
+    "price": 81360,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Green Product",
+    "image": "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/1/12/58bc463d-91c0-4832-8400-890d5998d78d.png",
+    "stock": 46
+  },
+  {
+    "name": "Pakan Ayam BSF",
+    "price": 81000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Green Product",
+    "image": "https://aliansizerowaste.id/wp-content/uploads/2023/02/maggot-bsf-1024x665.webp",
+    "stock": 46
+  },
+  {
+    "name": "Minyak Goreng",
+    "price": 81222,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Grocery",
+    "image": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-52927570/siip_siip_minyak_goreng_pouch_-6_pcs_x_1800ml-_full02_u08slffn.png",
+    "stock": 46
+  },
+  {
+    "name": "Beras",
+    "price": 81222,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Grocery",
+    "image": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//109/MTA-88873560/beras_beras_bulog_medium_5kg_full05_tru5vuyh.jpg",
+    "stock": 46
+  },
+  {
+    "name": "iPhone",
+    "price": 81222,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Technology",
+    "image": "https://images.tokopedia.net/img/cache/700/OJWluG/2022/2/14/a28bbeb4-5c1a-4c33-a93e-f906b8ebbd87.jpg?ect=4g",
+    "stock": 46
+  },
+  {
+    "name": "Playstation 4",
+    "price": 81222,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "category": "Technology",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sony-PlayStation-4-PS4-wDualShock-4.jpg/1200px-Sony-PlayStation-4-PS4-wDualShock-4.jpg",
+    "stock": 46
+  }
+]
