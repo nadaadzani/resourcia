@@ -13,7 +13,7 @@ export const ClientFlashParams = () => {
       icon: "error",
       title: error,
     });
-    router.replace(pathname);
+    // router.replace(pathname);
   }
   if (success) {
     Swal.fire({

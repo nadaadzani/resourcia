@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { handleRegister } from "./action";
+import Error from "./error";
 
 const page = () => {
   return (
@@ -11,6 +12,7 @@ const page = () => {
             <p className="font-[300] text-xl">
               Welcome and create account here
             </p>
+            <Error />
             <form className="flex pt-5 flex-col gap-6" action={handleRegister}>
               <div className="relative h-11 w-full min-w-[200px]">
                 <input

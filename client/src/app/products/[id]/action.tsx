@@ -31,5 +31,5 @@ export const handleCreateOrder = async (
   if ("errors" in responseJson)
     redirect(`/?error=${responseJson.errors[0].message}`);
 
-  redirect("/?success=Success Create Order");
+  redirect("/order?success=Success Create Order");
 };

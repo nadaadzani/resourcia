@@ -6,12 +6,8 @@ import Link from "next/link";
 import { FcDonate } from "react-icons/fc";
 
 export default function Home() {
-  function sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  sleep(1000);
   return (
-    <main className=" min-h-screen pt-32 max-md:pt-20 pb-32  ">
+    <main className=" min-h-screen md:h-100vh md:pb-40 pt-32 max-md:pt-20 pb-32  ">
       <div className="flex relative justify-between max-md:flex-col max-md:gap-6 max-md:px-5 px-20">
         <div className="w-[57%] max-md:w-full">
           <div className="px-10 max-md:px-5 bg-[#34CCFF] hover:scale-95 transition-all duration-200 hover:ease-in-out rounded-xl flex flex-col pb-12 max-md:pb-5  gap-10 py-10">
@@ -73,9 +69,6 @@ export default function Home() {
                 Sign Up
               </Link>
             </motion.div>
-            <div className="text-9xl absolute -bottom-10 left-[45vw] text-yellow-400 max-[440px]:hidden">
-              <FcDonate />
-            </div>
           </div>
         </div>
         <div className="w-[40%] max-md:w-full">

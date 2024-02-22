@@ -30,6 +30,10 @@ export const handleRegister = async (formData: FormData) => {
       },
     }),
   });
-  console.log(await response.json());
+  const responseJson = await response.json();
+  // console.log(await response.json());
+  if ("errors" in responseJson)
+    redirect(`/register?fieldError=${responseJson.errors[0].message}`);
+
   redirect("/login?success=Success Register Account");
 };

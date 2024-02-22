@@ -143,7 +143,7 @@ export default async function AdminPage() {
           {/* --- */}
 
           <section className="flex lg:flex-row lg:pl-72 lg:pr-16 pt-8 gap-8 min-[320px]:flex-col">
-            <div className="flex flex-col w-1/2 min-[320px]:w-[90%] min-[320px]:mx-auto">
+            <div className="flex flex-col w-1/2 min-[320px]:w-[90%] min-[320px]:mx-auto mb-4">
               <h1 className="font-semibold text-xl">Product Orders</h1>
               <div className="w-full h-auto bg-white rounded-xl mt-4">
                 <table className="table-fixed mt-2 text-center lg:w-full min-[320px]:w-full">
@@ -172,7 +172,7 @@ export default async function AdminPage() {
                 </table>
               </div>
             </div>
-            <div className="flex flex-col w-1/2 min-[320px]:w-[90%] min-[320px]:mx-auto">
+            <div className="flex flex-col w-1/2 min-[320px]:w-[90%] min-[320px]:mx-auto mb-4">
               <h1 className="font-semibold text-xl">Pickup Orders</h1>
               <div className="w-full h-auto bg-white rounded-xl mt-4">
                 <table className="table-fixed mt-2 text-center lg:w-full min-[320px]:w-full">

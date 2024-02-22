@@ -40,7 +40,7 @@ export const addPickupOrder = async (
       },
     }),
   });
-  redirect("/");
+  redirect("/order");
 };
 
 export const handleChangeProductOrderStatus = async (id: string) => {

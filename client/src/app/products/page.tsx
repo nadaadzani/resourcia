@@ -44,7 +44,7 @@ const page = async ({
         <div className="py-7 px-10 max-md:py-2 max-md:px-5 flex flex-col max-md:gap-3 gap-6">
           <p className="text-2xl max-md:text-xl font-bold">Products</p>
           <p className="text-5xl max-md:text-3xl font-bold tracking-tighter">
-            Shop and get rewards
+            Claim your rewards!
           </p>
         </div>
       </div>
@@ -65,7 +65,7 @@ const page = async ({
               </h1>
             </div>
           )}
-          <div className="grid grid-cols-3 h-[90%] max-md:grid-cols-2 gap-4 pt-4 pb-8">
+          <div className="grid grid-cols-3 h-[90%] max-md:grid-cols-1 gap-4 pt-4 pb-8">
             {products.map((prod, idx) => {
               return <Card key={idx} data={prod} />;
             })}

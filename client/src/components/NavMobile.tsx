@@ -6,10 +6,14 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { handleLogout } from "./actionLogout";
+import { useAuth } from "@/store/useAuth";
 
 // NavLink
 const NavMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isLoggedIn = useAuth((state) => state.isLoggedIn);
+  const logout = useAuth((state) => state.logout);
   //framer motion variants
   const circleVariants = {
     hidden: {
@@ -88,19 +92,37 @@ const NavMobile = () => {
             Donate
           </Link>
           <Link
-            href={`/login`}
+            href={`/order`}
             onClick={() => setIsOpen(false)}
             className="text-4xl cursor-pointer text-white font-semibold"
           >
-            Login
+            Orders
           </Link>
-          <form action={handleLogout}>
-            <button onClick={() => setIsOpen(false)} type="submit">
-              <p className="text-4xl cursor-pointer text-white font-semibold ">
-                Logout
-              </p>
-            </button>
-          </form>
+          {isLoggedIn ? (
+            <>
+              <form
+                action={() => {
+                  handleLogout(), logout();
+                }}
+              >
+                <button onClick={() => setIsOpen(false)} type="submit">
+                  <p className="text-4xl cursor-pointer text-white font-semibold ">
+                    Logout
+                  </p>
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Link
+                href={`/login`}
+                onClick={() => setIsOpen(false)}
+                className="text-4xl cursor-pointer text-white font-semibold"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </li>
       </motion.ul>
     </nav>

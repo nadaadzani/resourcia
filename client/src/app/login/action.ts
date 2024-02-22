@@ -27,7 +27,7 @@ export const handleLogin = async (formData: FormData) => {
   const responseJson = await response.json();
 
   if ("errors" in responseJson)
-    redirect(`/login?error=${responseJson.errors[0].message}`);
+    redirect(`/login?fieldError=${responseJson.errors[0].message}`);
 
   cookies().set("token", responseJson.data.login.token);
   cookies().set("id", responseJson.data.login._id);

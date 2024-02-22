@@ -27,7 +27,7 @@ export default function FormAddPoints({ id }: { id: string }) {
               setPoin(Number(e.target.value));
             }}
           />
-          Kg
+          <p className="ml-2">Kg</p>
           <FaArrowRightLong className="ml-4" />
           <label htmlFor="" className="ml-4">
             {poin} points

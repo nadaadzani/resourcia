@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { IoMdExit, IoMdLogIn } from "react-icons/io";
+import { IoMdExit } from "react-icons/io";
 import { GrShop } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import NavMobile from "@/components/NavMobile";
 import { handleLogout } from "./actionLogout";
+import { useAuth } from "@/store/useAuth";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
+
+  const isLoggedIn = useAuth((state) => state.isLoggedIn);
+  const logout = useAuth((state) => state.logout);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,20 +80,43 @@ const Nav = () => {
               >
                 <GrShop />
               </Link>
-              <Link
-                href={"/login"}
-                className="text-3xl flex  font-[300] justify-center items-center"
+              {isLoggedIn ? (
+                <>
+                  <form
+                    action={() => {
+                      handleLogout(), logout();
+                    }}
+                  >
+                    <button
+                      className="text-3xl flex  font-[300] justify-center items-center"
+                      type="submit"
+                    >
+                      <IoMdExit />
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={"/login"}
+                    className="text-3xl flex  font-[300] justify-center items-center"
+                  >
+                    <FaUser />
+                  </Link>
+                </>
+              )}
+              {/* <form
+                action={() => {
+                  handleLogout(), logout();
+                }}
               >
-                <FaUser />
-              </Link>
-              <form action={handleLogout}>
                 <button
                   className="text-3xl flex  font-[300] justify-center items-center"
                   type="submit"
                 >
                   <IoMdExit />
                 </button>
-              </form>
+              </form> */}
             </div>
           </div>
           <div className="md:hidden text-black text-4xl">
